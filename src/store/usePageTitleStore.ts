@@ -1,3 +1,4 @@
+// named imports
 import { create } from "zustand";
 
 type PageTitleStore = {

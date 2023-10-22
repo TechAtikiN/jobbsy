@@ -1,5 +1,6 @@
 // default imports
-import Navbar from '@/components/globals/Navbar'
+import Footer from '@/components/global/Footer'
+import Navbar from '@/components/global/Navbar'
 
 const AppLayout = ({ children }: {
   children: React.ReactNode
@@ -11,6 +12,8 @@ const AppLayout = ({ children }: {
       <main>
         {children}
       </main>
+
+      <Footer />
     </div>
   )
 }
