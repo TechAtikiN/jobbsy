@@ -8,7 +8,7 @@ import CategoryListing from '@/components/jobs/CategoryListing'
 
 export default function Home() {
   return (
-    <div>
+    <div className='px-8'>
       <PageTitle />
 
       <div className='grid grid-cols-10 mx-6 gap-x-8'>

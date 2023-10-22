@@ -17,7 +17,7 @@ const CategoryListing = () => {
             className='flex items-center justify-between group hover:bg-indigo-50 font-semibold hover:cursor-pointer px-2 py-2 border-b border-gray-300'
           >
             <p className='text-gray-600 group-hover:text-indigo-500'>{category.title}</p>
-            <p className='text-gray-500 text-xs group-hover:text-indigo-500'>{category.count} &nbsp; jobs</p>
+            <p className='text-[9px] bg-indigo-500 text-white rounded-full p-1'>{category.count}</p>
           </div>
         ))}
       </div>

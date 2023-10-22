@@ -7,11 +7,11 @@ import Link from 'next/link'
 
 const Navbar = () => {
   return (
-    <nav className='p-4 bg-gray-50 flex justify-between items-center px-10 m-3 border border-gray-300 rounded-md'>
+    <nav className='p-4 bg-slate-100 flex justify-between items-center px-10 m-3 border border-gray-300 rounded-lg'>
       <div className='flex items-center justify-start space-x-6'>
         <Link
           href='/'
-          className='flex items-center text-indigo-500 group hover:cursor-pointer'>
+          className='flex items-center space-x-2 text-indigo-500 group hover:cursor-pointer'>
           <BriefcaseIcon className='h-8 w-8' />
           <p className='text-xl font-bold'>jobbsy</p>
         </Link>

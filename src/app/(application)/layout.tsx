@@ -9,7 +9,7 @@ const AppLayout = ({ children }: {
     <div>
       <Navbar />
 
-      <main>
+      <main className=' min-h-screen'>
         {children}
       </main>
 

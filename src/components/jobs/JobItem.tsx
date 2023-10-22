@@ -9,14 +9,14 @@ interface Props {
 const JobItem = ({ job }: Props) => {
   return (
     <div
-      className='py-6 border-b hover:cursor-pointer border-gray-200 group'
+      className='py-6 border-b hover:cursor-pointer group/item border-gray-200 group'
     >
       <Link
         href={`/jobs/${job.id}`}
       >
         {/* main section  */}
         <div className='flex items-center space-x-3'>
-          <img className='rounded-full h-12 w-12' src={job.companyLogo} alt='logo' />
+          <img className='rounded-full object-cover h-12 w-12' src={job.companyLogo} alt='logo' />
           <div className='flex justify-between items-start w-full'>
             <div>
               <h3 className='text-gray-700 text-2xl font-bold'>{job.company}</h3>
@@ -25,8 +25,8 @@ const JobItem = ({ job }: Props) => {
             <button
               className='flex items-center font-bold text-gray-500 group-hover:text-indigo-600'
             >
-              <div className='p-1 bg-gray-100 group-hover:bg-indigo-100 rounded-full'>
-                <ArrowUpRightIcon className='h-4 w-4' />
+              <div className='p-2 text-sm flex items-center space-x-1 bg-gray-100 group/edit invisible hover:bg-slate-200 group-hover/item:visible group-hover:bg-indigo-100 rounded-full'>
+                <span>Details</span><ArrowUpRightIcon className='h-4 w-4' />
               </div>
             </button>
           </div>
