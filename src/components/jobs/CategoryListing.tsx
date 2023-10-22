@@ -1,11 +1,12 @@
 'use client'
+// named imports
 import { useState } from 'react'
 import { usePageTitleStore } from '@/store/usePageTitleStore'
 import { categories } from '@/constants/jobs'
 
 const CategoryListing = () => {
   const [showAllCategories, setShowAllCategories] = useState(false)
-  const [title, setTitle] = usePageTitleStore((state) => [state.title, state.setTitle])
+  const [setTitle] = usePageTitleStore((state) => [state.setTitle])
 
   return (
     <div>

@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .form-input {
+        @apply focus:outline-none border border-gray-200 rounded-md text-xs px-3 py-2;
+    }
+    .form-label {
+        @apply text-[13px] font-semibold text-gray-600;
+    }
+}

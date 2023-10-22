@@ -1,5 +1,15 @@
-import { ClipboardDocumentIcon, FolderArrowDownIcon, RectangleStackIcon, ShieldCheckIcon, UsersIcon } from "@heroicons/react/24/solid"
-import Link from "next/link"
+// named imports
+import JobApplicationForm from '@/components/jobs/JobApplicationForm'
+import { Sheet, SheetTrigger } from '@/components/ui/sheet'
+import {
+  ClipboardDocumentIcon,
+  RectangleStackIcon,
+  ShieldCheckIcon,
+  UsersIcon
+} from '@heroicons/react/24/solid'
+
+// default imports
+import Link from 'next/link'
 
 const jobDetails = {
   jobId: 1,
@@ -73,15 +83,22 @@ const JobDetails = () => {
       <div className='border-b border-gray-300'>
         <div className='flex justify-between items-center'>
           <h3 className='text-4xl font-semibold text-gray-700'>{jobDetails.title}</h3>
-          <Link
-            href={`/jobs/${jobDetails.jobId}/apply`}
-            className='bg-indigo-500 uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
 
-          >
-            Apply for this position
-          </Link>
+          {/* job application form  */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <button
+                className='bg-indigo-500 uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
+
+              >
+                Apply for this position
+              </button>
+            </SheetTrigger>
+            <JobApplicationForm company={jobDetails.company} jobId={jobDetails.jobId} jobTitle={jobDetails.title} />
+          </Sheet>
         </div>
 
+        {/* job description  */}
         <div className='my-4'>
           <div className='my-3'>
             <p className='font-semibold text-lg text-gray-700'>{jobDetails.company}</p>
@@ -97,6 +114,7 @@ const JobDetails = () => {
         </div>
       </div>
 
+      {/* job details section */}
       <div className='grid grid-cols-10 gap-x-8'>
         <div className='col-span-7 my-4 flex flex-col'>
 
@@ -152,15 +170,19 @@ const JobDetails = () => {
             </ol>
 
           </div>
-          <Link
-            href={`/jobs/${jobDetails.jobId}/apply`}
-            className='bg-indigo-500 text-center mx-4 w-full uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
-          >
-            Apply for this position
-          </Link>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Link
+                href={`/jobs/${jobDetails.jobId}/apply`}
+                className='bg-indigo-500 text-center mx-4 w-full uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
+              >
+                Apply for this position
+              </Link>
+            </SheetTrigger>
+            <JobApplicationForm company={jobDetails.company} jobId={jobDetails.jobId} jobTitle={jobDetails.title} />
+          </Sheet>
         </div>
 
-        {/* job filters */}
         <div className='col-span-3 my-4 text-gray-700'>
           <h3 className='text-3xl font-extrabold hover:text-indigo-600 my-2'>
             About {jobDetails.company}
