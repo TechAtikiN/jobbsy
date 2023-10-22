@@ -13,7 +13,9 @@ const CategoryListing = () => {
       <div className='my-2'>
         {(showAllCategories ? categories : categories.slice(0, 7)).map((category, index) => (
           <div
-            onClick={() => setTitle(`${category.title} jobs`)}
+            onClick={() => {
+              category.title === 'All' ? setTitle('Connecting you to jobs on a global scale') : setTitle(`${category.title} jobs`)
+            }}
             key={index}
             className='flex items-center justify-between group hover:bg-indigo-50 font-semibold hover:cursor-pointer px-2 py-2 border-b border-gray-300'
           >

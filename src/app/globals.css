@@ -13,4 +13,7 @@
     .form-label {
         @apply text-[13px] font-semibold text-gray-600;
     }
+    .heading {
+        @apply text-xl font-semibold leading-7 text-gray-700;
+    }
 }

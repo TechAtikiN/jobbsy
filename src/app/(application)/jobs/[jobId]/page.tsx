@@ -19,24 +19,13 @@ const jobDetails = {
   location: 'London, UK',
   salary: '$120,000',
   experience: '3+ years',
-  about: ' Software Engineers who specialise in C++ for a selection of diverse fields. Depending on your background, skills, and experience we’ll find the most suitable role within our teams for you. We value human skills and character as much as we do experience and proficiency. Do not hesitate to apply if you think Google would be a good place for you.',
+  about: 'Software Engineers who specialise in C++ for a selection of diverse fields. Depending on your background, skills, and experience we’ll find the most suitable role within our teams for you. We value human skills and character as much as we do experience and proficiency. Do not hesitate to apply if you think Google would be a good place for you.',
   dayInYourLife: 'A typical day for a Software Engineer focused on console porting would start with an hour looking over some code with a senior engineer. You then might have the opportunity to look at optimising a piece of AI logic, discussing as necessary with a specialist in the area. In the afternoon you may spend some time working with game designers and artists to complete a feature integration.',
   rolesAndResponsibilities: [
-    'Design, develop, test, deploy, maintain and improve software.',
-    'Manage individual project priorities, deadlines and deliverables.',
-    'Produce comprehensive, usable software documentation.',
-    'Evaluate and make decisions around the use of new or existing software products and tools.',
-    'Mentor other team members on design techniques, and coding standards.',
-    'Collaborate with other team members and stakeholders.',
-    'Develop a deep understanding of the relevant business areas and various components in the stack.',
+    'Developing and maintaining the game engine and tools for a variety of platforms. This includes the core engine, editor, build system, and other supporting tools.',
   ],
   skillSet: [
-    'Strong software development fundamentals, design theory, and development processes',
-    'Excellent debugging skills',
-    'Excellent written and verbal communication',
-    'Willingness to work as part of a team and contribute to technical discussions',
-    'Eager to learn from reviews and constructive feedback',
-    'Strong personal time management skills'
+    'Experience working with C++ in a professional environment. Game development experience is a plus but not required. We are looking for people with a passion for games and a desire to learn. We are open to candidates from a variety of backgrounds and experience levels. ',
   ],
   compensation: 'Competitive salary, bonus scheme, pension scheme, private healthcare, life assurance, income protection, 25 days holiday, free breakfast, free gym, free eye tests, regular social events, and more!'
 }
@@ -126,18 +115,20 @@ const JobDetails = () => {
             <p className='text-justify pr-3'>{jobDetails.dayInYourLife}</p>
 
             <h3 className='font-bold text-2xl my-2 mt-7'>Roles and Responsibilities</h3>
-            <ul className='px-8 space-y-3'>
+            <p className='text-justify pr-3'>{jobDetails.rolesAndResponsibilities}</p>
+            {/* <ul className='px-8 space-y-3'>
               {jobDetails.rolesAndResponsibilities.map((role, index) => (
                 <li key={index} className='text-justify list-disc'>{role}</li>
-              ))}
-            </ul>
+                ))}
+              </ul> */}
 
             <h3 className='font-bold text-2xl my-2 mt-7'>Skillset</h3>
-            <ul className='px-8 space-y-3'>
+            <p className='text-justify pr-3'>{jobDetails.skillSet}</p>
+            {/* <ul className='px-8 space-y-3'>
               {jobDetails.skillSet.map((skill, index) => (
                 <li key={index} className='text-justify list-disc'>{skill}</li>
               ))}
-            </ul>
+            </ul> */}
 
             <h3 className='font-bold text-2xl my-2 mt-7'>Compensation</h3>
             <p className='text-justify pr-3'>{jobDetails.compensation}</p>

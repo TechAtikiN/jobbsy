@@ -52,6 +52,10 @@ export const jobs: Job[] = [
 
 export const categories = [
     {
+        title: "All",
+        count: 100,
+    },
+    {
         title: "Backend",
         count: 20,
     },
