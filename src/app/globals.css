@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 @layer components {
     .form-input {
-        @apply focus:outline-none border border-gray-200 rounded-md text-xs px-3 py-2;
+        @apply focus:outline-none border border-gray-200 rounded-md text-xs p-2;
     }
     .form-label {
         @apply text-[13px] font-semibold text-gray-600;
