@@ -33,7 +33,8 @@ const JobApplicationForm = ({ jobTitle, company }: Props) => {
     try {
       const response = await fetch('/api/applicants', {
         method: 'POST',
-        body: JSON.stringify({ ...data, company })
+        body: JSON.stringify({ ...data, company }),
+        cache: 'no-cache',
       })
 
       // toast notification

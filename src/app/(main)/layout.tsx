@@ -5,6 +5,8 @@ import { Toaster } from '@/components/ui/toaster'
 import Footer from '@/components/global/Footer'
 import Navbar from '@/components/global/Navbar'
 
+export const revalidate = Number(process.env.NEXT_PUBLIC_REVALIDATE) || 60
+
 const AppLayout = ({ children }: {
   children: React.ReactNode
 }) => {

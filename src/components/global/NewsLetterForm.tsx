@@ -26,8 +26,10 @@ const NewsLetterForm = () => {
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        cache: 'no-cache'
       })
+
       if (!res.ok) {
         toast({
           title: "Something went wrong",
