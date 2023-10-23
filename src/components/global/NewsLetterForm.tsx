@@ -68,7 +68,7 @@ const NewsLetterForm = () => {
             id='name'
             className='form-input w-full'
           />
-          {errors.name && <span className='text-red-500 text-sm'>This field is required</span>}
+          {errors.name && <span className='text-red-500 text-xs'>This field is required</span>}
         </div>
         <div className=''>
           <label htmlFor='email' className='text-sm'>
@@ -79,7 +79,7 @@ const NewsLetterForm = () => {
             id='email'
             className='form-input w-full'
           />
-          {errors.email && <span className='text-red-500 text-sm'>This field is required</span>}
+          {errors.email && <span className='text-red-500 text-xs'>This field is required</span>}
         </div>
         <DialogFooter>
           <button type='submit' className='apply-btn mx-auto my-2 py-2'>Subscribe</button>

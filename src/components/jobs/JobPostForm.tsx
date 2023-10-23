@@ -1,64 +1,65 @@
 'use client'
 // named imports
+import { use, useEffect, useState } from 'react'
+import { getCompanies } from '@/actions/getCompanies'
 import { useForm } from 'react-hook-form'
-import { Sheet, SheetTrigger } from '../ui/sheet'
 import { useToast } from '../ui/use-toast'
+import { useRouter } from 'next/navigation'
+import { Sheet, SheetTrigger } from '../ui/sheet'
 
 // default imports
 import AddCompanyForm from './AddCompanyForm'
 
-const companies = [
-  'Workcation',
-  'Remote Lands',
-  'Herald',
-  'Google',
-  'Shopify',
-  'Twitch',
-  'GitHub',
-  'Slack',
-  'Discord',
-  'Amazon',
-]
-
 type FormValues = {
-  company: string
-  jobTitle: string
+  title: string
   location: string
+  domain: string
+  company: Company
   salaryCompensation: string
   yearsOfExperience: number
   description: string
-  dayInYourLife: string
-  rolesNResponsibilities: string
-  skillSet: string
+  dayInLife: string
+  rolesResponsibilities: string
+  skillset: string
+  companyId: number
   compensation: string
 }
 
+type Company = {
+  id: number,
+  name: string,
+}
+
 const JobPostForm = () => {
-  const { toast } = useToast()
+  const router = useRouter()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
+  const [companies, setCompanies] = useState<Company[]>([])
+
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      const companies = await getCompanies()
+      setCompanies(companies)
+    }
+    fetchCompanies()
+  }, [])
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data)
-    // toast notification
-    // if (!res.ok) {
-    //   toast({
-    //     title: "Something went wrong",
-    //     description: "Please try again later",
-    //   })
-    // } else {
-    // toast({
-    //   title: "Created a new job post",
-    //   description: "Added the job post to the company",
-    // })
-    //   reset()
-    // }
+    const response = await fetch('/api/post-job', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (response.status === 200) {
+      router.push(`/`)
+    }
   })
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className=''
-    >
+    <form onSubmit={onSubmit}>
       <div className='sm:space-y-10 space-y-5'>
 
         {/* company details */}
@@ -69,14 +70,17 @@ const JobPostForm = () => {
           </p>
 
           <select
-            {...register('company', { required: true })}
+            {...register('companyId', { required: true, valueAsNumber: true })}
             className='border border-gray-300 px-2 py-2 my-2 text-sm w-1/2 rounded-md focus:outline-none'
-            name='company' id='company'>
-            {companies.map((company) => (
-              <option key={company}>{company}</option>
-            ))}
+            name='companyId'
+            id='companyId'>
+            {
+              companies.map((company) => (
+                <option value={company.id} key={company.id}>{company.name}</option>
+              ))
+            }
           </select>
-          {errors.company && <p className='text-red-500 text-sm'>Company is required</p>}
+          {errors.company && <p className='text-red-500 text-xs'>Company is required</p>}
 
           <div className='flex text-xs'>
             <p>
@@ -103,24 +107,41 @@ const JobPostForm = () => {
           </p>
 
           <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
-            <div className='sm:col-span-3'>
-              <label htmlFor='jobTitle' className='block text-sm font-medium leading-6 text-gray-700'>
+            <div className='sm:col-span-2'>
+              <label htmlFor='title' className='block text-sm font-medium leading-6 text-gray-700'>
                 Job Title
               </label>
               <div className='mt-2'>
                 <input
-                  {...register('jobTitle', { required: true })}
+                  {...register('title', { required: true })}
                   type='text'
-                  name='jobTitle'
+                  name='title'
                   placeholder='e.g. Senior Software Engineer'
                   id='job'
                   className='form-input w-full'
                 />
-                {errors.jobTitle && <p className='text-red-500 text-sm'>Job title is required</p>}
+                {errors.title && <p className='text-red-500 text-xs'>Job title is required</p>}
               </div>
             </div>
 
-            <div className='sm:col-span-3'>
+            <div className='sm:col-span-2'>
+              <label htmlFor='domain' className='block text-sm font-medium leading-6 text-gray-700'>
+                Domain
+              </label>
+              <div className='mt-2'>
+                <input
+                  {...register('domain', { required: true })}
+                  type='text'
+                  name='domain'
+                  placeholder='e.g. Senior Software Engineer'
+                  id='job'
+                  className='form-input w-full'
+                />
+                {errors.domain && <p className='text-red-500 text-xs'>Job Domain is required</p>}
+              </div>
+            </div>
+
+            <div className='sm:col-span-2'>
               <label htmlFor='location' className='block text-sm font-medium leading-6 text-gray-700'>
                 Job Location
               </label>
@@ -133,7 +154,7 @@ const JobPostForm = () => {
                   placeholder='e.g. London, UK'
                   className='form-input w-full'
                 />
-                {errors.location && <p className='text-red-500 text-sm'>Location is required</p>}
+                {errors.location && <p className='text-red-500 text-xs'>Location is required</p>}
               </div>
             </div>
 
@@ -150,7 +171,7 @@ const JobPostForm = () => {
                   placeholder='e.g. $100,000'
                   className='form-input w-full'
                 />
-                {errors.salaryCompensation && <p className='text-red-500 text-sm'>Salary compensation is required</p>}
+                {errors.salaryCompensation && <p className='text-red-500 text-xs'>Salary compensation is required</p>}
               </div>
             </div>
 
@@ -167,7 +188,7 @@ const JobPostForm = () => {
                   placeholder='e.g. 5'
                   className='form-input w-full'
                 />
-                {errors.yearsOfExperience && <p className='text-red-500 text-sm'>Years of experience is required</p>}
+                {errors.yearsOfExperience && <p className='text-red-500 text-xs'>Years of experience is required</p>}
               </div>
             </div>
 
@@ -185,25 +206,25 @@ const JobPostForm = () => {
                   placeholder='Describe the job in detail'
                   className='form-input w-full'
                 />
-                {errors.description && <p className='text-red-500 text-sm'>Description is required</p>}
+                {errors.description && <p className='text-red-500 text-xs'>Description is required</p>}
               </div>
             </div>
 
             <div className='sm:col-span-3'>
-              <label htmlFor='dayInYourLife' className='block text-sm font-medium leading-6 text-gray-700'>
+              <label htmlFor='dayInLife' className='block text-sm font-medium leading-6 text-gray-700'>
                 What a typical day looks like?
               </label>
               <div className='mt-2'>
                 <textarea
-                  {...register('dayInYourLife', { required: true })}
+                  {...register('dayInLife', { required: true })}
                   style={{ resize: 'none' }}
                   rows={3}
-                  name='dayInYourLife'
+                  name='dayInLife'
                   placeholder='Describe a typical day in the job'
-                  id='dayInYourLife'
+                  id='dayInLife'
                   className='form-input w-full'
                 />
-                {errors.dayInYourLife && <p className='text-red-500 text-sm'>Day in your life is required</p>}
+                {errors.dayInLife && <p className='text-red-500 text-xs'>Day in your life is required</p>}
               </div>
             </div>
 
@@ -221,43 +242,43 @@ const JobPostForm = () => {
                   id='compensation'
                   className='form-input w-full'
                 />
-                {errors.compensation && <p className='text-red-500 text-sm'>Day in your life is required</p>}
+                {errors.compensation && <p className='text-red-500 text-xs'>Day in your life is required</p>}
               </div>
             </div>
 
             <div className='sm:col-span-6'>
-              <label htmlFor='rolesNResponsibilities' className='block text-sm font-medium leading-6 text-gray-700'>
+              <label htmlFor='rolesResponsibilities' className='block text-sm font-medium leading-6 text-gray-700'>
                 Roles &amp; Responsibilities
               </label>
               <div className='mt-2'>
                 <textarea
-                  {...register('rolesNResponsibilities', { required: true })}
+                  {...register('rolesResponsibilities', { required: true })}
                   style={{ resize: 'none' }}
                   rows={3}
-                  name='rolesNResponsibilities'
-                  id='rolesNResponsibilities'
+                  name='rolesResponsibilities'
+                  id='rolesResponsibilities'
                   placeholder='Make a list of the roles and responsibilities of the job'
                   className='form-input w-full'
                 />
-                {errors.rolesNResponsibilities && <p className='text-red-500 text-sm'>Roles and responsibilities are required</p>}
+                {errors.rolesResponsibilities && <p className='text-red-500 text-xs'>Roles and responsibilities are required</p>}
               </div>
             </div>
 
             <div className='sm:col-span-6'>
-              <label htmlFor='skillSet' className='block text-sm font-medium leading-6 text-gray-700'>
+              <label htmlFor='skillset' className='block text-sm font-medium leading-6 text-gray-700'>
                 Skill set required
               </label>
               <div className='mt-2'>
                 <textarea
-                  {...register('skillSet', { required: true })}
+                  {...register('skillset', { required: true })}
                   style={{ resize: 'none' }}
                   rows={3}
-                  name='skillSet'
-                  id='skillSet'
+                  name='skillset'
+                  id='skillset'
                   placeholder='Make a list of the skills required for the job'
                   className='form-input w-full'
                 />
-                {errors.skillSet && <p className='text-red-500 text-sm'>Skill set is required</p>}
+                {errors.skillset && <p className='text-red-500 text-xs'>Skill set is required</p>}
               </div>
             </div>
           </div>

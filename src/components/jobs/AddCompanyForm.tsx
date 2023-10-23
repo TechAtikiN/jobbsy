@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 // named imports
 import {
   SheetContent,
@@ -9,37 +9,40 @@ import {
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
 import { useToast } from '../ui/use-toast'
+import { useTransition } from 'react'
+import { addCompanyProfile } from '@/actions/addCompanyProfile'
 
 type FormValues = {
   name: string
   location: string
   description: string
   about: string
-  companyBenefits: string
+  benefits: string
   website: string
   policies: string
 }
 
 const AddCompanyForm = () => {
+  const [isPending, startTransition] = useTransition()
   const { toast } = useToast()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
+    const company = startTransition(() => {
+      addCompanyProfile(data)
+    })
 
-    // toast notification
-    // if (!res.ok) {
-    //   toast({
-    //     title: "Something went wrong",
-    //     description: "Please try again later",
-    //   })
-    // } else {
-    // toast({
-    //   title: "Added the company successfully",
-    //   description: "Now you can add jobs for this company",
-    // })
-    //   reset()
-    // }
+    if (company === null) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later",
+      })
+    } else {
+      toast({
+        title: "Added the company successfully",
+        description: "Now you can add jobs for this company",
+      })
+    }
   })
 
   return (
@@ -127,7 +130,7 @@ const AddCompanyForm = () => {
 
         <div className='flex flex-col space-y-1'>
           <label
-            htmlFor='companyBenefits'
+            htmlFor='benefits'
             className='form-label'
           >
             Company Benefits
@@ -135,12 +138,12 @@ const AddCompanyForm = () => {
           <textarea
             style={{ resize: 'none' }}
             rows={3}
-            id='companyBenefits'
+            id='benefits'
             placeholder='Benefits given by your company'
             className='form-input'
-            {...register('companyBenefits', { required: true })}
+            {...register('benefits', { required: true })}
           ></textarea>
-          {errors.companyBenefits && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.benefits && <span className='text-red-500 text-xs'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -182,7 +185,7 @@ const AddCompanyForm = () => {
             className='bg-indigo-500 text-center w-full uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
             type='submit'
           >
-            Submit
+            {isPending ? 'Submitting...' : 'Submit'}
           </button>
         </SheetFooter>
       </form>
