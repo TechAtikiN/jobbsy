@@ -4,7 +4,7 @@ import { usePageTitleStore } from '@/store/usePageTitleStore'
 import JobItem from './JobItem'
 import { getCategoryJobs } from '@/actions/getCategoryJobs'
 import { useEffect, useState } from 'react'
-import { toast, useToast } from '../ui/use-toast'
+import { toast, useToast } from '@/hooks/useToast'
 
 interface Props {
   jobs: Job[]

@@ -11,7 +11,7 @@ import {
 } from '@heroicons/react/24/solid'
 import { useParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/hooks/useToast'
 
 // default imports
 import Link from 'next/link'

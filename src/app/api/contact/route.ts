@@ -4,8 +4,8 @@ import { createTransport } from "nodemailer";
 const transporter = createTransport({
     service: "gmail",
     auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD,
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.PASSWORD,
     },
 });
 
@@ -30,7 +30,7 @@ const handler = async (req: Request) => {
   `;
 
     const orgMailData = {
-        from: process.env.EMAIL, // sender address
+        from: process.env.EMAIL_ADDRESS, // sender address
         to: "nikitakhabya03@gmail.com",
         cc: "techatikin@gmail.com",
         subject: `[Subscribed to Newsletter]: ${email}`, // subject line
@@ -38,7 +38,7 @@ const handler = async (req: Request) => {
     };
 
     const userMailData = {
-        from: process.env.EMAIL, // sender address
+        from: process.env.EMAIL_ADDRESS, // sender address
         to: email,
         subject: "Thank you for subscribing to our newsletter", // subject line
         html: userMailFormattedHtml, // html body

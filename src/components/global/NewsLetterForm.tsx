@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle
 } from '../ui/dialog'
-import { useToast } from '../ui/use-toast'
+import { useToast } from '@/hooks/useToast'
 
 type FormValues = {
   name: string
