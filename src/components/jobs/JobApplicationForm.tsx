@@ -9,9 +9,7 @@ import {
   SheetTitle
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
-import { submitApplicationForm } from '../../actions/submitApplicationForm'
 import { useToast } from '@/hooks/useToast'
-
 
 type Props = {
   jobTitle: string
@@ -28,24 +26,33 @@ type FormValues = {
 
 const JobApplicationForm = ({ jobTitle, company }: Props) => {
   const { toast } = useToast()
-  const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>()
+
 
   const onSubmit = handleSubmit(async (data) => {
-    const submitAppication = await submitApplicationForm(data)
+    try {
+      const response = await fetch('/api/applicants', {
+        method: 'POST',
+        body: JSON.stringify({ ...data, company })
+      })
 
-    // toast notification
-    // if (!res.ok) {
-    //   toast({
-    //     title: "Something went wrong",
-    //     description: "Please try again later",
-    //   })
-    // } else {
-    // toast({
-    //   title: "Application submitted successfully",
-    //   description: "You'll receive an email from the company shortly",
-    // })
-    //   reset()
-    // }
+      // toast notification
+      if (!response.ok) {
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later",
+        })
+      } else {
+        toast({
+          title: "Application submitted successfully",
+          description: "You'll receive an email from the company shortly",
+        })
+        reset()
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
   })
 
   return (
@@ -128,27 +135,6 @@ const JobApplicationForm = ({ jobTitle, company }: Props) => {
           {errors.summary && <span className='text-red-500 text-xs'>This field is required</span>}
         </div>
 
-        <div className='flex flex-col space-y-1'>
-          <label
-            htmlFor='resume'
-            className='form-label'
-          >
-            Resume/CV
-          </label>
-          <input
-            type='file'
-            id='resume'
-            placeholder='Resume/CV'
-            className='form-input'
-            {...register('resume', { required: true })}
-          />
-          {errors.resume && <span className='text-red-500 text-xs'>This field is required</span>}
-          {/* <button
-            formAction={uploadResume}
-          >
-            Upload Resume
-          </button> */}
-        </div>
         <SheetFooter>
           <button
             className='bg-indigo-500 text-center w-full uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'

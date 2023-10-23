@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  web:
+    container_name: jobbsy-web
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - EMAIL_ADDRESS=${EMAIL_ADDRESS}
+      - PASSWORD=${PASSWORD}
+      - DATABASE_URL=${DATABASE_URL}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
