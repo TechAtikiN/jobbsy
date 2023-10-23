@@ -2,6 +2,7 @@
 // named imports
 import { useForm } from 'react-hook-form'
 import { Sheet, SheetTrigger } from '../ui/sheet'
+import { useToast } from '../ui/use-toast'
 
 // default imports
 import AddCompanyForm from './AddCompanyForm'
@@ -33,10 +34,24 @@ type FormValues = {
 }
 
 const JobPostForm = () => {
+  const { toast } = useToast()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data)
+    // toast notification
+    // if (!res.ok) {
+    //   toast({
+    //     title: "Something went wrong",
+    //     description: "Please try again later",
+    //   })
+    // } else {
+    // toast({
+    //   title: "Created a new job post",
+    //   description: "Added the job post to the company",
+    // })
+    //   reset()
+    // }
   })
 
   return (

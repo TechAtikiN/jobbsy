@@ -1,3 +1,6 @@
+// named imports
+import { Toaster } from '@/components/ui/toaster'
+
 // default imports
 import Footer from '@/components/global/Footer'
 import Navbar from '@/components/global/Navbar'
@@ -11,6 +14,7 @@ const AppLayout = ({ children }: {
 
       <main className=' min-h-screen'>
         {children}
+        <Toaster />
       </main>
 
       <Footer />

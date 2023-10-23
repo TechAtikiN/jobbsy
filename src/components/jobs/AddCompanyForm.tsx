@@ -8,6 +8,7 @@ import {
   SheetTitle
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
+import { useToast } from '../ui/use-toast'
 
 type FormValues = {
   name: string
@@ -20,10 +21,25 @@ type FormValues = {
 }
 
 const AddCompanyForm = () => {
+  const { toast } = useToast()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data)
+
+    // toast notification
+    // if (!res.ok) {
+    //   toast({
+    //     title: "Something went wrong",
+    //     description: "Please try again later",
+    //   })
+    // } else {
+    // toast({
+    //   title: "Added the company successfully",
+    //   description: "Now you can add jobs for this company",
+    // })
+    //   reset()
+    // }
   })
 
   return (

@@ -11,6 +11,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { submitApplicationForm } from '../../actions/submitApplicationForm'
 import { uploadResume } from '@/actions/uploadResume'
+import { useToast } from '../ui/use-toast'
 
 
 type Props = {
@@ -28,10 +29,25 @@ type FormValues = {
 }
 
 const JobApplicationForm = ({ jobId, jobTitle, company }: Props) => {
+  const { toast } = useToast()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
   const onSubmit = handleSubmit(async (data) => {
     const submitAppication = await submitApplicationForm(data)
+
+    // toast notification
+    // if (!res.ok) {
+    //   toast({
+    //     title: "Something went wrong",
+    //     description: "Please try again later",
+    //   })
+    // } else {
+    // toast({
+    //   title: "Application submitted successfully",
+    //   description: "You'll receive an email from the company shortly",
+    // })
+    //   reset()
+    // }
   })
 
   return (

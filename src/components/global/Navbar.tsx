@@ -4,6 +4,8 @@ import { BriefcaseIcon } from '@heroicons/react/24/solid'
 
 // default imports
 import Link from 'next/link'
+import { Dialog, DialogTrigger } from '../ui/dialog'
+import NewsLetterForm from './NewsLetterForm'
 
 const Navbar = () => {
   return (
@@ -26,9 +28,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      <button className='text-indigo-600 border-2 w-52 border-indigo-500 hover:border-indigo-400 text-sm uppercase px-3 py-2 hover:text-indigo-500 font-semibold rounded-md'>
-        Get our newsletter
-      </button>
+      <Dialog>
+        <DialogTrigger asChild>
+          <button className='text-indigo-600 border-2 w-52 border-indigo-500 hover:border-indigo-400 text-sm uppercase px-3 py-2 hover:text-indigo-500 font-semibold rounded-md'>
+            Get our newsletter
+          </button>
+        </DialogTrigger>
+        <NewsLetterForm />
+      </Dialog>
     </nav>
   )
 }
