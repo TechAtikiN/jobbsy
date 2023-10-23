@@ -29,6 +29,7 @@ type FormValues = {
   dayInYourLife: string
   rolesNResponsibilities: string
   skillSet: string
+  compensation: string
 }
 
 const JobPostForm = () => {
@@ -41,7 +42,7 @@ const JobPostForm = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className='space-y-10'
+      className=''
     >
       <div className='space-y-10'>
 
@@ -191,9 +192,27 @@ const JobPostForm = () => {
               </div>
             </div>
 
+            <div className='sm:col-span-3'>
+              <label htmlFor='dayInYourLife' className='block text-sm font-medium leading-6 text-gray-700'>
+                Compensation
+              </label>
+              <div className='mt-2'>
+                <textarea
+                  {...register('compensation', { required: true })}
+                  style={{ resize: 'none' }}
+                  rows={3}
+                  name='compensation'
+                  placeholder='Describe the compensation for the job'
+                  id='compensation'
+                  className='form-input w-full'
+                />
+                {errors.compensation && <p className='text-red-500 text-sm'>Day in your life is required</p>}
+              </div>
+            </div>
+
             <div className='sm:col-span-6'>
               <label htmlFor='rolesNResponsibilities' className='block text-sm font-medium leading-6 text-gray-700'>
-                Roles &amp; Responsibilities of the job
+                Roles &amp; Responsibilities
               </label>
               <div className='mt-2'>
                 <textarea
@@ -211,7 +230,7 @@ const JobPostForm = () => {
 
             <div className='sm:col-span-6'>
               <label htmlFor='skillSet' className='block text-sm font-medium leading-6 text-gray-700'>
-                Skill set required for the job
+                Skill set required
               </label>
               <div className='mt-2'>
                 <textarea
@@ -233,9 +252,9 @@ const JobPostForm = () => {
 
       <button
         type='submit'
-        className='bg-indigo-500 text-center w-1/4 uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
+        className='apply-btn w-1/4 ml-[415px] mb-9'
       >
-        Post Job
+        Post a Job
       </button>
     </form>
   )

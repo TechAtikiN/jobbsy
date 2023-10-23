@@ -57,11 +57,7 @@ const companyDetails = {
   name: 'Google',
   location: 'London, UK',
   description: 'Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.',
-  benefits: [
-    'Flexible working hours',
-    'Remote working',
-    'Home office allowance',
-  ]
+  benefits: 'Competitive salary, bonus scheme, pension scheme, private healthcare, life assurance, income protection, 25 days holiday, free breakfast, free gym, free eye tests, regular social events, and more!'
 }
 
 const JobDetails = () => {
@@ -77,7 +73,7 @@ const JobDetails = () => {
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className='bg-indigo-500 uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
+                className='apply-btn'
 
               >
                 Apply for this position
@@ -163,12 +159,11 @@ const JobDetails = () => {
           </div>
           <Sheet>
             <SheetTrigger asChild>
-              <Link
-                href={`/jobs/${jobDetails.jobId}/apply`}
-                className='bg-indigo-500 text-center mx-4 w-full uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
+              <button
+                className='apply-btn w-full text-center'
               >
                 Apply for this position
-              </Link>
+              </button>
             </SheetTrigger>
             <JobApplicationForm company={jobDetails.company} jobId={jobDetails.jobId} jobTitle={jobDetails.title} />
           </Sheet>
@@ -176,7 +171,7 @@ const JobDetails = () => {
 
         <div className='col-span-3 my-4 text-gray-700'>
           <h3 className='text-3xl font-extrabold hover:text-indigo-600 my-2'>
-            About {jobDetails.company}
+            About the company
           </h3>
 
           <div className='p-4 bg-indigo-50 rounded-md'>
@@ -185,12 +180,9 @@ const JobDetails = () => {
               <p className='text-sm'>{companyDetails.location}</p>
             </div>
             <p className='text-sm my-4'>{companyDetails.description}</p>
+
             <h3 className='font-semibold mt-4'>Benefits of working at {companyDetails.name}</h3>
-            <ul className='px-5 space-y-2'>
-              {companyDetails.benefits.map((benefit, index) => (
-                <li className='list-disc text-sm' key={index} > {benefit}</li>
-              ))}
-            </ul>
+            <p className='text-sm my-4'>{companyDetails.benefits}</p>
 
             <Link
               className='text-sm hover:underline m-2 text-indigo-700 font-semibold'

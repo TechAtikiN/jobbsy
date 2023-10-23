@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <button className='text-indigo-600 border-2 border-indigo-500 hover:border-indigo-400 text-sm uppercase px-2 py-1 hover:text-indigo-400 font-semibold rounded-md'>
+      <button className='text-indigo-600 border-2 w-52 border-indigo-500 hover:border-indigo-400 text-sm uppercase px-3 py-2 hover:text-indigo-500 font-semibold rounded-md'>
         Get our newsletter
       </button>
     </nav>

@@ -20,13 +20,15 @@ const CategoryListing = () => {
             className='flex items-center justify-between group hover:bg-indigo-50 font-semibold hover:cursor-pointer px-2 py-2 border-b border-gray-300'
           >
             <p className='text-gray-600 group-hover:text-indigo-500'>{category.title}</p>
-            <p className='text-[9px] bg-indigo-500 text-white rounded-full p-1'>{category.count}</p>
+            <p className='text-[9px] bg-gradient-to-br from-indigo-400 to-indigo-700 rounded-md w-16 text-center py-1 px-2 text-white'>
+              {category.count}+ jobs
+            </p>
           </div>
         ))}
       </div>
 
       <button
-        className='bg-indigo-500 font-semibold my-2 text-white px-3 py-2 rounded-md w-full'
+        className='apply-btn w-full'
         onClick={() => setShowAllCategories(!showAllCategories)}
       >
         {showAllCategories ? 'Show less categories' : 'Show all categories'}

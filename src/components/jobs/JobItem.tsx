@@ -38,18 +38,18 @@ const JobItem = ({ job }: Props) => {
           <p className='text-xs text-gray-500'>{job.location}</p>
 
           {/* tags */}
-          <div className='flex items-center my-2'>
+          <div className='flex items-center space-x-2 my-2'>
             <p
-              className='p-2 hover:cursor-pointer font-semibold rounded-sm text-xs bg-indigo-50 text-indigo-600 hover:bg-indigo-200 hover:text-indigo-700'
+              className='p-2 hover:cursor-pointer font-semibold rounded-lg text-xs bg-indigo-50 text-indigo-600 hover:bg-indigo-200 hover:text-indigo-700'
             >
               {job.salary}
             </p>
 
-            <div className='space-x-4 mx-5'>
+            <div className='space-x-2'>
               {job.skills.map((skill) => (
                 <span
                   key={skill}
-                  className='p-2 hover:cursor-pointer font-semibold rounded-sm text-xs bg-green-50 text-green-600 hover:bg-green-200 hover:text-green-800'
+                  className='p-2 hover:cursor-pointer font-medium rounded-lg text-xs bg-green-50 text-green-600 hover:bg-green-200 hover:text-green-800'
                 >
                   {skill}
                 </span>

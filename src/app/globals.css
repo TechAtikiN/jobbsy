@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-    width: 0px;
+@layer base {
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #4f46e5;
+    }
 }
 
 @layer components {
@@ -15,5 +23,8 @@
     }
     .heading {
         @apply text-xl font-semibold leading-7 text-gray-700;
+    }
+    .apply-btn {
+        @apply bg-gradient-to-tl from-indigo-400 to-indigo-800 shadow-md uppercase font-semibold text-white px-3 py-3 rounded-md text-sm;
     }
 }

@@ -27,21 +27,22 @@ const AddCompanyForm = () => {
   })
 
   return (
-    <SheetContent>
+    <SheetContent className="w-[400px] sm:w-[540px]">
       <SheetHeader>
         <SheetTitle>
           <p>
-            Add Company
+            Add a Company
           </p>
         </SheetTitle>
         <SheetDescription>
-          You are adding a new company, please fill the form carefully.
+          Fill the details carefully
         </SheetDescription>
       </SheetHeader>
 
+      <hr className='my-4' />
       <form
         onSubmit={onSubmit}
-        className='flex flex-col space-y-6 my-5 h-[480px] overflow-x-hidden overflow-y-scroll'>
+        className='flex flex-col pr-3 space-y-6 my-5 h-[480px] overflow-x-hidden overflow-y-scroll'>
         <div className='flex flex-col space-y-1'>
           <label
             htmlFor='name'
