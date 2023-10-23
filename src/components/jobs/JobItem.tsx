@@ -40,7 +40,7 @@ const JobItem = ({ job }: Props) => {
         {/* sub section  */}
         <div className='ml-[3.3rem] mt-2 text-gray-600'>
           <h3 className=' font-semibold text-lg hover:cursor-pointer hover:text-indigo-600'>{job?.company?.name}</h3>
-          <p className='text-xs text-gray-500'>{job?.company?.description.split('.')[0]}</p>
+          <p className='text-xs text-gray-500'>{job?.company?.description?.split('.')[0]}</p>
 
           {/* tags */}
           <div className='sm:flex items-center hidden space-x-2 my-2'>

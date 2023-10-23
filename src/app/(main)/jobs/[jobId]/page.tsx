@@ -80,7 +80,7 @@ const JobDetails = () => {
         {/* job description  */}
         <div className='my-4'>
           <div className='my-3'>
-            <p className='font-semibold text-lg text-gray-700'>{jobDetails?.company.name}</p>
+            <p className='font-semibold text-lg text-gray-700'>{jobDetails?.company?.name}</p>
             {/* <p className='text-xs text-gray-500'>{jobDetails?.date}</p> */}
           </div>
 
@@ -159,7 +159,7 @@ const JobDetails = () => {
                 Apply for this position
               </button>
             </SheetTrigger>
-            <JobApplicationForm company={jobDetails?.company.name!} jobTitle={jobDetails?.title!} />
+            <JobApplicationForm company={jobDetails?.company?.name!} jobTitle={jobDetails?.title!} />
           </Sheet>
         </div>
 
