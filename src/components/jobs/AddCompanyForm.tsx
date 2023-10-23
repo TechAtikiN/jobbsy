@@ -58,7 +58,7 @@ const AddCompanyForm = () => {
       <hr className='my-4' />
       <form
         onSubmit={onSubmit}
-        className='flex flex-col pr-3 space-y-6 my-5 h-[480px] overflow-x-hidden overflow-y-scroll'>
+        className='flex flex-col pr-3 space-y-6 my-5 sm:h-[480px] overflow-x-hidden overflow-y-scroll'>
         <div className='flex flex-col space-y-1'>
           <label
             htmlFor='name'

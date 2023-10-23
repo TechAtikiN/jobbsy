@@ -1,5 +1,5 @@
 // named imports
-import { ArrowUpRightIcon } from '@heroicons/react/24/solid'
+import { ArrowUpRightIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 
 interface Props {
@@ -19,26 +19,26 @@ const JobItem = ({ job }: Props) => {
           <img className='rounded-full object-cover h-12 w-12' src={job.companyLogo} alt='logo' />
           <div className='flex justify-between items-start w-full'>
             <div>
-              <h3 className='text-gray-700 text-2xl font-bold'>{job.company}</h3>
-              <p className='text-sm text-gray-600'>{job.companyDescription}</p>
+              <p className='text-gray-700 text-2xl font-bold'>{job.jobTitle}</p>
+              <p className='text-sm text-gray-600'>{job.location}</p>
             </div>
             <button
               className='flex items-center font-bold text-gray-500 group-hover:text-indigo-600'
             >
-              <div className='p-2 text-sm flex items-center space-x-1 bg-gray-100 group/edit invisible hover:bg-slate-200 group-hover/item:visible group-hover:bg-indigo-100 rounded-full'>
-                <span>Details</span><ArrowUpRightIcon className='h-4 w-4' />
+              <div className='p-2 text-sm bg-gray-100 group/edit invisible hover:bg-slate-200 group-hover/item:visible group-hover:bg-indigo-100 rounded-full'>
+                <ChevronRightIcon className='h-4 w-4' />
               </div>
             </button>
           </div>
         </div>
 
         {/* sub section  */}
-        <div className='ml-16 mt-2 text-gray-600'>
-          <p className='font-semibold text-lg hover:cursor-pointer hover:text-indigo-600'>{job.jobTitle}</p>
-          <p className='text-xs text-gray-500'>{job.location}</p>
+        <div className='ml-[3.8rem] mt-2 text-gray-600'>
+          <h3 className=' font-semibold text-lg hover:cursor-pointer hover:text-indigo-600'>{job.company}</h3>
+          <p className='text-xs text-gray-500'>{job.companyDescription}</p>
 
           {/* tags */}
-          <div className='flex items-center space-x-2 my-2'>
+          <div className='sm:flex items-center hidden space-x-2 my-2'>
             <p
               className='p-2 hover:cursor-pointer font-semibold rounded-lg text-xs bg-indigo-50 text-indigo-600 hover:bg-indigo-200 hover:text-indigo-700'
             >

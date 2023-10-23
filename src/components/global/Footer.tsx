@@ -1,8 +1,10 @@
 // named imports
 import { BriefcaseIcon } from '@heroicons/react/24/solid'
+import { Dialog, DialogTrigger } from '../ui/dialog'
 
 // default imports
 import Link from 'next/link'
+import NewsLetterForm from './NewsLetterForm'
 
 const Footer = () => {
   return (
@@ -12,13 +14,13 @@ const Footer = () => {
         <div className='pb-10'>
           <Link
             href='/'
-            className='flex py-12 items-center text-indigo-300 group hover:cursor-pointer'>
+            className='flex space-x-2 py-12 items-center text-indigo-300 group hover:cursor-pointer'>
             <BriefcaseIcon className='h-8 w-8' />
             <p className='text-xl font-bold'>jobbsy</p>
           </Link>
 
 
-          <div className='grid grid-cols-4 gap-x-10'>
+          <div className='grid sm:grid-cols-4 grid-cols-2 sm:gap-x-10 sm:gap-y-0 gap-y-7 '>
             <div className=''>
               <h2 className='mb-4 text-sm font-bold text-gray-300 uppercase'>Sources</h2>
               <ul className='text-gray-400 space-y-5 font-medium'>
@@ -82,21 +84,28 @@ const Footer = () => {
         <hr className='my-6 border-gray-700 sm:mx-auto 700 lg:my-8' />
 
         <div className=''>
-          <div className='text-gray-300 text-left flex justify-between space-y-1'>
+          <div className='text-gray-300 text-left sm:flex sm:justify-between sm:space-y-1 space-y-4'>
             <p className='text-lg font-semibold'>
-              Subscribe to our newsletter
+              Want to stay up to date with the latest news and updates from Jobbsy?
             </p>
             <div className='flex mt-4 space-x-5 sm:justify-center sm:mt-0'>
-              <input
-                type="email"
+              {/* <input
+                type='email'
                 className='form-input font-semibold w-[250px] bg-gray-800 text-gray-300 border border-gray-600'
                 placeholder='Your email address'
-              />
-              <button className='apply-btn px-5 py-1'>Subscribe</button>
+              /> */}
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className='border-2 border-indigo-300 text-sm uppercase px-3 py-2 text-indigo-300 font-semibold rounded-md'>
+                    Subscribe to our Newsletter
+                  </button>
+                </DialogTrigger>
+                <NewsLetterForm />
+              </Dialog>
             </div>
 
           </div>
-          <p className='text-gray-400 text-sm'>The latest news, articles, and resources, sent to your inbox weekly.</p>
+          <p className='text-gray-400 text-sm sm:py-0 py-5'>The latest news, articles, and resources, sent to your inbox weekly.</p>
 
 
         </div>

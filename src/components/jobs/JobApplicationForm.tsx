@@ -51,7 +51,7 @@ const JobApplicationForm = ({ jobId, jobTitle, company }: Props) => {
   })
 
   return (
-    <SheetContent>
+    <SheetContent className='w-[400px] sm:w-[540px]'>
       <SheetHeader>
         <SheetTitle>
           <p>{jobTitle}</p>

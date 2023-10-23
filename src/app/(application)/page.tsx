@@ -11,7 +11,7 @@ export default function Home() {
     <div className='px-8'>
       <PageTitle />
 
-      <div className='grid grid-cols-10 mx-6 gap-x-8'>
+      <div className='grid sm:grid-cols-10 sm:mx-6 gap-x-8'>
         <div className='col-span-7'>
 
           <div className='border-b border-gray-300 py-3'>
@@ -28,14 +28,12 @@ export default function Home() {
         </div>
 
         {/* job filters */}
-        <div className='col-span-3'>
+        <div className='col-span-3 hidden sm:block'>
           <h3 className='text-gray-600 font-bold text-2xl'>Search by category</h3>
 
           <CategoryListing />
         </div>
       </div>
-
-      {/* <Newsletter/> */}
 
     </div>
   )

@@ -62,18 +62,18 @@ const companyDetails = {
 
 const JobDetails = () => {
   return (
-    <div className='p-6 px-14'>
+    <div className='p-6 sm:px-14 px-7'>
 
       {/* top details section */}
       <div className='border-b border-gray-300'>
-        <div className='flex justify-between items-center'>
-          <h3 className='text-4xl font-semibold text-gray-700'>{jobDetails.title}</h3>
+        <div className='sm:flex justify-between items-center'>
+          <h3 className='sm:text-4xl text-3xl font-semibold text-gray-700'>{jobDetails.title}</h3>
 
           {/* job application form  */}
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className='apply-btn'
+                className='apply-btn hidden sm:block'
 
               >
                 Apply for this position
@@ -100,8 +100,8 @@ const JobDetails = () => {
       </div>
 
       {/* job details section */}
-      <div className='grid grid-cols-10 gap-x-8'>
-        <div className='col-span-7 my-4 flex flex-col'>
+      <div className='grid sm:grid-cols-10 grid-cols-2 gap-x-8'>
+        <div className='sm:col-span-7 col-span-2 my-4 flex flex-col'>
 
           <div className='text-gray-700'>
             <h2 className='text-3xl font-extrabold hover:text-indigo-600 my-2'>Job Details</h2>
@@ -169,7 +169,7 @@ const JobDetails = () => {
           </Sheet>
         </div>
 
-        <div className='col-span-3 my-4 text-gray-700'>
+        <div className='sm:col-span-3 col-span-2 my-4 text-gray-700'>
           <h3 className='text-3xl font-extrabold hover:text-indigo-600 my-2'>
             About the company
           </h3>

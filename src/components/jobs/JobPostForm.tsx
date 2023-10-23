@@ -59,10 +59,10 @@ const JobPostForm = () => {
       onSubmit={onSubmit}
       className=''
     >
-      <div className='space-y-10'>
+      <div className='sm:space-y-10 space-y-5'>
 
         {/* company details */}
-        <div className='border-b border-gray-900/10 pb-12'>
+        <div className='border-b border-gray-900/10 sm:pb-12 pb-6'>
           <h2 className='heading'>Company Details</h2>
           <p className='text-sm leading-6 text-gray-600 mb-2'>
             Select the company you are posting for.
@@ -207,8 +207,8 @@ const JobPostForm = () => {
               </div>
             </div>
 
-            <div className='sm:col-span-3'>
-              <label htmlFor='dayInYourLife' className='block text-sm font-medium leading-6 text-gray-700'>
+            <div className='sm:col-span-6'>
+              <label htmlFor='compensation' className='block text-sm font-medium leading-6 text-gray-700'>
                 Compensation
               </label>
               <div className='mt-2'>
@@ -267,7 +267,7 @@ const JobPostForm = () => {
 
       <button
         type='submit'
-        className='apply-btn w-1/4 ml-[415px] mb-9'
+        className='apply-btn sm:w-1/4 sm:ml-[415px] mb-4 sm:mb-9'
       >
         Post a Job
       </button>
