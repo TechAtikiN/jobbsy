@@ -1,12 +1,16 @@
 // named imports
-import { jobs } from '@/constants/jobs'
+import { getAllJobs } from '@/actions/getAllJobs'
 
 // default imports
 import JobItem from '@/components/jobs/JobItem'
 import PageTitle from '@/components/jobs/PageTitle'
 import CategoryListing from '@/components/jobs/CategoryListing'
+import { usePageTitleStore } from '@/store/usePageTitleStore'
+import JobListing from '@/components/jobs/JobListing'
 
-export default function Home() {
+export default async function Home() {
+  const jobs = await getAllJobs()
+
   return (
     <div className='px-8'>
       <PageTitle />
@@ -14,17 +18,8 @@ export default function Home() {
       <div className='grid sm:grid-cols-10 sm:mx-6 gap-x-8'>
         <div className='col-span-7'>
 
-          <div className='border-b border-gray-300 py-3'>
-            <h3 className='text-gray-600 font-bold text-2xl'>89 New jobs</h3>
-            <p className='text-xs text-gray-600 mb-3'>Last updated on October 22 2023</p>
-          </div>
-
           {/* job listing */}
-          <div className='mb-10'>
-            {jobs.map((job) => (
-              <JobItem key={job.id} job={job} />
-            ))}
-          </div>
+          <JobListing jobs={jobs} />
         </div>
 
         {/* job filters */}

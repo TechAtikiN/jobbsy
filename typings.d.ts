@@ -1,12 +1,14 @@
 type Job = {
     id: number;
-    company: string;
-    companyDescription: string;
-    companyLogo: string;
-    jobTitle: string;
-    salary: string;
+    title: string;
+    domain: string;
     location: string;
-    skills: string[];
+    salaryCompensation: string;
+    company: {
+        name: string;
+        id: number;
+        description: string;
+    };
 };
 
 type JobApplication = {
@@ -16,3 +18,27 @@ type JobApplication = {
     summary: string;
     resume: FileList;
 };
+
+type Company = {
+    name: string;
+    id: number;
+    description: string;
+    benefits: string;
+    location: string;
+};
+
+type JobDetails = {
+    id: number;
+    title: string;
+    domain: string;
+    location: string;
+    salaryCompensation: string;
+    yearsOfExperience: string;
+    description: string;
+    dayInLife: string;
+    compensation: string;
+    rolesResponsibilities: string;
+    skillset: string;
+    companyId: number;
+    company: Company;
+} | null;

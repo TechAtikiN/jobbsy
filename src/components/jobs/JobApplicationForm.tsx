@@ -10,12 +10,10 @@ import {
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
 import { submitApplicationForm } from '../../actions/submitApplicationForm'
-import { uploadResume } from '@/actions/uploadResume'
 import { useToast } from '../ui/use-toast'
 
 
 type Props = {
-  jobId: number
   jobTitle: string
   company: string
 }
@@ -28,7 +26,7 @@ type FormValues = {
   resume: FileList
 }
 
-const JobApplicationForm = ({ jobId, jobTitle, company }: Props) => {
+const JobApplicationForm = ({ jobTitle, company }: Props) => {
   const { toast } = useToast()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
 

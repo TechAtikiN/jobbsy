@@ -7,6 +7,6 @@ type PageTitleStore = {
 };
 
 export const usePageTitleStore = create<PageTitleStore>((set) => ({
-    title: "Connecting you to jobs on a global scale",
+    title: "Global connections and opportunities, endless",
     setTitle: (title: string) => set({ title }),
 }));

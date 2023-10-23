@@ -31,7 +31,7 @@ type Company = {
 }
 
 const JobPostForm = () => {
-  const router = useRouter()
+  const { toast } = useToast()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
   const [companies, setCompanies] = useState<Company[]>([])
 
@@ -44,7 +44,6 @@ const JobPostForm = () => {
   }, [])
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
     const response = await fetch('/api/post-job', {
       method: 'POST',
       headers: {
@@ -54,7 +53,15 @@ const JobPostForm = () => {
     })
 
     if (response.status === 200) {
-      router.push(`/`)
+      toast({
+        title: "Added the company successfully",
+        description: "Now you can add jobs for this company",
+      })
+    } else {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later",
+      })
     }
   })
 
