@@ -9,7 +9,7 @@ import NewsLetterForm from './NewsLetterForm'
 const Footer = () => {
   return (
     <footer className='bg-slate-900'>
-      <div className='mx-auto w-full max-w-screen-xl p-10 lg:py-8'>
+      <div className='w-full max-w-screen-2xl mx-auto p-10 lg:py-8'>
 
         <div className='pb-10'>
           <Link

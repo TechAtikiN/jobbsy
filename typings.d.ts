@@ -22,9 +22,9 @@ type JobApplication = {
 type Company = {
     name: string;
     id: number;
-    description: string;
-    benefits: string;
-    location: string;
+    description?: string;
+    benefits?: string;
+    location?: string;
 };
 
 type JobDetails = {
@@ -32,13 +32,13 @@ type JobDetails = {
     title: string;
     domain: string;
     location: string;
-    salaryCompensation: string;
-    yearsOfExperience: string;
-    description: string;
-    dayInLife: string;
-    compensation: string;
-    rolesResponsibilities: string;
-    skillset: string;
-    companyId: number;
-    company: Company;
+    salaryCompensation?: string;
+    yearsOfExperience?: string;
+    description?: string;
+    dayInLife?: string;
+    compensation?: string;
+    rolesResponsibilities?: string;
+    skillset?: string;
+    companyId?: number;
+    company?: Company;
 } | null;

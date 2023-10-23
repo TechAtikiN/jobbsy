@@ -18,8 +18,7 @@ const Navbar = () => {
   }
 
   return (
-    <div>
-
+    <div className='max-w-screen-2xl mx-auto'>
       <nav className='p-4 bg-slate-100 hidden sm:flex justify-between items-center px-10 m-3 border border-gray-300 rounded-lg'>
         <div className='flex items-center justify-start space-x-6'>
           <Link

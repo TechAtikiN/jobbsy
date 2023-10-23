@@ -54,8 +54,8 @@ const JobPostForm = () => {
 
     if (response.status === 200) {
       toast({
-        title: "Added the company successfully",
-        description: "Now you can add jobs for this company",
+        title: "Job posted successfully",
+        description: "Created a new job post",
       })
     } else {
       toast({

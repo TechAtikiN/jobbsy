@@ -12,7 +12,7 @@ const AppLayout = ({ children }: {
     <div>
       <Navbar />
 
-      <main className=' min-h-screen'>
+      <main className='max-w-screen-2xl mx-auto min-h-screen'>
         {children}
         <Toaster />
       </main>

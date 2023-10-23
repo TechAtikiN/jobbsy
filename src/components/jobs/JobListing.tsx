@@ -7,17 +7,17 @@ import { useEffect, useState } from 'react'
 import { toast, useToast } from '@/hooks/useToast'
 
 interface Props {
-  jobs: Job[]
+  jobs: JobDetails[]
 }
 
 const JobListing = ({ jobs }: Props) => {
   const { toast } = useToast()
   const [title] = usePageTitleStore((state) => [state.title])
-  const [categoryJobsList, setCategoryJobsList] = useState<any>([])
+  const [categoryJobsList, setCategoryJobsList] = useState<JobDetails[]>([])
 
   useEffect(() => {
     const fetchCategoryJobs = async () => {
-      const categoryJobs = await getCategoryJobs(title)
+      const categoryJobs: JobDetails[] = await getCategoryJobs(title)
       setCategoryJobsList(categoryJobs)
     }
 
@@ -37,9 +37,14 @@ const JobListing = ({ jobs }: Props) => {
       </div>
 
       <div className='mb-10'>
-        {(title === 'Global connections and opportunities, endless' ? jobs : categoryJobsList).map((job: any) => (
-          <JobItem key={job.id} job={job} />
-        ))}
+        {(title === ('Global connections and opportunities, endless' || 'All') ?
+          jobs : categoryJobsList).map((job: JobDetails) => (
+            <JobItem
+              key={job?.id}
+              job={job}
+            />
+          ))
+        }
       </div>
     </div>
   )

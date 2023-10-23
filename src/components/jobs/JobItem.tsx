@@ -1,24 +1,12 @@
 // named imports
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
-import Image from 'next/image'
 
 // default imports
 import Link from 'next/link'
 
 interface Props {
-  job: Job
+  job: JobDetails
 }
-
-const tempImages = [
-  'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&q=80&w=1912&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1531315630201-bb15abeb1653?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1532210317995-cc56d90177d9?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1528460033278-a6ba57020470?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1507608158173-1dcec673a2e5?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://plus.unsplash.com/premium_photo-1667761634654-7fcf176434b8?auto=format&fit=crop&q=80&w=2037&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-]
 
 const JobItem = ({ job }: Props) => {
   return (
@@ -26,7 +14,7 @@ const JobItem = ({ job }: Props) => {
       className='py-6 border-b hover:cursor-pointer group/item border-gray-200 group'
     >
       <Link
-        href={`/jobs/${job.id}`}
+        href={`/jobs/${job?.id}`}
       >
         {/* main section  */}
         <div className='flex items-start space-x-2'>
@@ -36,8 +24,8 @@ const JobItem = ({ job }: Props) => {
 
           <div className='flex justify-between items-start w-full'>
             <div>
-              <p className='text-gray-700 text-2xl font-bold'>{job.title}</p>
-              <p className='text-sm text-gray-600'>{job.location}</p>
+              <p className='text-gray-700 text-2xl font-bold'>{job?.title}</p>
+              <p className='text-sm text-gray-600'>{job?.location}</p>
             </div>
             <button
               className='flex items-center font-bold text-gray-500 group-hover:text-indigo-600'

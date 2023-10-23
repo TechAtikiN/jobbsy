@@ -1,12 +1,31 @@
 'use client'
 // named imports
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePageTitleStore } from '@/store/usePageTitleStore'
-import { categories } from '@/constants/jobs'
+import { getCategories } from '@/actions/getCategories'
 
 const CategoryListing = () => {
+  const setTitle = usePageTitleStore((state) => state.setTitle)
+
+  const [loading, setLoading] = useState(false)
   const [showAllCategories, setShowAllCategories] = useState(false)
-  const [setTitle] = usePageTitleStore((state) => [state.setTitle])
+  const [categories, setCategories] = useState<{
+    title: string
+    count: number
+  }[]>([])
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      setLoading(true)
+      const categories = await getCategories()
+      setCategories(categories)
+      setLoading(false)
+    }
+
+    fetchCategories()
+  }, [])
+
+  if (loading) return <p className='text-sm text-indigo-500 text-start py-5 font-medium'>Loading Categories...</p>
 
   return (
     <div>
