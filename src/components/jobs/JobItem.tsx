@@ -1,5 +1,6 @@
 // named imports
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
+import Image from 'next/image'
 
 // default imports
 import Link from 'next/link'
@@ -28,12 +29,11 @@ const JobItem = ({ job }: Props) => {
         href={`/jobs/${job.id}`}
       >
         {/* main section  */}
-        <div className='flex items-center space-x-3'>
-          <img
-            className='rounded-full object-cover h-12 w-12'
-            src={tempImages[Math.floor(Math.random() * tempImages.length)]}
-            alt='logo'
-          />
+        <div className='flex items-start space-x-2'>
+          <div className='p-1 font-bold text-xl h-12 w-12 bg-indigo-50 rounded-md'>
+            <p className=' text-indigo-700 text-center pt-1'>{job?.company?.name.charAt(0)}</p>
+          </div>
+
           <div className='flex justify-between items-start w-full'>
             <div>
               <p className='text-gray-700 text-2xl font-bold'>{job.title}</p>
@@ -50,7 +50,7 @@ const JobItem = ({ job }: Props) => {
         </div>
 
         {/* sub section  */}
-        <div className='ml-[3.8rem] mt-2 text-gray-600'>
+        <div className='ml-[3.3rem] mt-2 text-gray-600'>
           <h3 className=' font-semibold text-lg hover:cursor-pointer hover:text-indigo-600'>{job?.company?.name}</h3>
           <p className='text-xs text-gray-500'>{job?.company?.description.split('.')[0]}</p>
 

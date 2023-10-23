@@ -10,6 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Applicant {
+  id                      Int      @id @default(autoincrement())
+  name                    String
+  email                   String
+  location                String
+  resume                  String
+  summary                 String
+  job                     Job      @relation(fields: [jobId], references: [id])
+  jobId                   Int
+  createdAt               DateTime @default(now())
+}
+
 model Job {
   id                      Int      @id @default(autoincrement())
   title                   String
@@ -21,6 +33,7 @@ model Job {
   dayInLife               String
   compensation            String
   rolesResponsibilities   String
+  applicants              Applicant[]
   skillset                String
   companyId               Int
   company   Company  @relation(fields: [companyId], references: [id])

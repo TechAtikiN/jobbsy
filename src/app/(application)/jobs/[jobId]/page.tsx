@@ -11,10 +11,10 @@ import {
 } from '@heroicons/react/24/solid'
 import { useParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
+import { useToast } from '@/components/ui/use-toast'
 
 // default imports
 import Link from 'next/link'
-import { useToast } from '@/components/ui/use-toast'
 
 const hiringProcess = [
   {
@@ -53,7 +53,7 @@ const JobDetails = () => {
       setLoading(false)
     }
     fetchJobDetails()
-  }, [])
+  }, [jobId])
 
   return (
     <div className='p-6 sm:px-14 px-7'>

@@ -78,7 +78,7 @@ const JobPostForm = () => {
 
           <select
             {...register('companyId', { required: true, valueAsNumber: true })}
-            className='border border-gray-300 px-2 py-2 my-2 text-sm w-1/2 rounded-md focus:outline-none'
+            className='border border-gray-300 px-2 py-2 my-2 text-sm w-full sm:w-1/2 rounded-md focus:outline-none'
             name='companyId'
             id='companyId'>
             {
