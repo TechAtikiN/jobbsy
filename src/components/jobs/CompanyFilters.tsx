@@ -24,7 +24,6 @@ const CompanyFilters = () => {
       setLoading(false)
     }
 
-    console.log(categories)
     fetchCategories()
   }, [])
 

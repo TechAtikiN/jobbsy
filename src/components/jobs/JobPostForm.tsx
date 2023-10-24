@@ -1,14 +1,14 @@
 'use client'
 // named imports
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getCompanies } from '@/actions/getCompanies'
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
-import { useRouter } from 'next/navigation'
 import { Sheet, SheetTrigger } from '../ui/sheet'
 
 // default imports
 import AddCompanyForm from './AddCompanyForm'
+import Loader from '../ui/loader'
 
 type FormValues = {
   title: string
@@ -32,16 +32,22 @@ type Company = {
 
 const JobPostForm = () => {
   const { toast } = useToast()
-  const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>()
+
+  const [loading, setLoading] = useState(false)
   const [companies, setCompanies] = useState<Company[]>([])
 
   useEffect(() => {
     const fetchCompanies = async () => {
+      setLoading(true)
       const companies = await getCompanies()
       setCompanies(companies)
+      setLoading(false)
     }
     fetchCompanies()
   }, [])
+
+  if (loading) return <Loader />
 
   const onSubmit = handleSubmit(async (data) => {
     const response = await fetch('/api/post-job', {
@@ -141,7 +147,7 @@ const JobPostForm = () => {
                   {...register('domain', { required: true })}
                   type='text'
                   name='domain'
-                  placeholder='e.g. Senior Software Engineer'
+                  placeholder='e.g. Devops'
                   id='job'
                   className='form-input w-full'
                 />
@@ -250,7 +256,7 @@ const JobPostForm = () => {
                   id='compensation'
                   className='form-input w-full'
                 />
-                {errors.compensation && <p className='text-red-500 text-xs'>Day in your life is required</p>}
+                {errors.compensation && <p className='text-red-500 text-xs'>Compensation is a required field</p>}
               </div>
             </div>
 

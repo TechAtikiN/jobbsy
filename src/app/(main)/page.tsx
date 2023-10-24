@@ -38,7 +38,7 @@ export default async function Home() {
           <CategoryListing />
 
           <h3 className='text-gray-600 font-bold text-2xl mt-7'>Search by Company</h3>
-          {/* <CompanyFilters /> */}
+          <CompanyFilters />
         </div>
       </div>
 

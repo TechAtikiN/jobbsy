@@ -10,10 +10,13 @@ import {
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
+import { postApplication } from '@/actions/postApplication'
+import { useState } from 'react'
 
 type Props = {
   jobTitle: string
   company: string
+  jobId: number
 }
 
 type FormValues = {
@@ -24,13 +27,19 @@ type FormValues = {
   resume: FileList
 }
 
-const JobApplicationForm = ({ jobTitle, company }: Props) => {
+const JobApplicationForm = ({ jobTitle, company, jobId }: Props) => {
   const { toast } = useToast()
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>()
 
+  const [loading, setLoading] = useState(false)
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setLoading(true)
+      // send application to the db
+      const sendApplication = await postApplication(jobId, data)
+
+      // mail application to company
       const response = await fetch('/api/applicants', {
         method: 'POST',
         body: JSON.stringify({ ...data, company }),
@@ -38,7 +47,7 @@ const JobApplicationForm = ({ jobTitle, company }: Props) => {
       })
 
       // toast notification
-      if (!response.ok) {
+      if (!response.ok || !sendApplication) {
         toast({
           title: "Something went wrong",
           description: "Please try again later",
@@ -50,10 +59,10 @@ const JobApplicationForm = ({ jobTitle, company }: Props) => {
         })
         reset()
       }
+      setLoading(false)
     } catch (err) {
       console.log(err)
     }
-
   })
 
   return (
@@ -141,7 +150,7 @@ const JobApplicationForm = ({ jobTitle, company }: Props) => {
             className='bg-indigo-500 text-center w-full uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
             type='submit'
           >
-            Submit
+            {loading ? 'Submitting...' : 'Submit'}
           </button>
         </SheetFooter>
       </form>

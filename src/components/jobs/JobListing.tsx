@@ -6,6 +6,8 @@ import { getCategoryJobs } from '@/actions/getCategoryJobs'
 import { useEffect, useState } from 'react'
 import { toast, useToast } from '@/hooks/useToast'
 import { useCurrentCompanyStore } from '@/store/useCurrentCompanyStore'
+import { getCompanyCategories } from '@/actions/getCompanyCategories'
+import { getCompanyCategoryJobs } from '@/actions/getCompanyCategoryJobs'
 
 interface Props {
   jobs: JobDetails[]
@@ -15,29 +17,39 @@ const JobListing = ({ jobs }: Props) => {
   const { toast } = useToast()
   const [title] = usePageTitleStore((state) => [state.title])
   const [company] = useCurrentCompanyStore((state) => [state.company])
-  const [categoryJobsList, setCategoryJobsList] = useState<JobDetails[]>([])
-  const [companyJobsList, setCompanyJobsList] = useState<JobDetails[]>([])
 
+  const [loading, setLoading] = useState(false)
+  const [categoryJobsList, setCategoryJobsList] = useState<JobDetails[]>([])
 
   useEffect(() => {
     const fetchCategoryJobs = async () => {
+      setLoading(true)
       const categoryJobs: JobDetails[] = await getCategoryJobs(title)
       setCategoryJobsList(categoryJobs)
+      setLoading(false)
     }
 
-    const fetchCompanyJobs = async () => {
-      const companyJobs: JobDetails[] = await getCategoryJobs(company)
-      setCompanyJobsList(companyJobs)
-    }
-    fetchCompanyJobs()
     fetchCategoryJobs()
-  }, [title, company])
+  }, [title])
+
+  useEffect(() => {
+    const fetchCompanyJobs = async () => {
+      setLoading(true)
+      const companyJobs: JobDetails[] = await getCompanyCategoryJobs(company)
+      setCategoryJobsList(companyJobs)
+      setLoading(false)
+    }
+
+    fetchCompanyJobs()
+  }, [company])
+
+  if (loading) return <p className='text-sm text-indigo-500 text-start py-5 font-medium'>Loading Jobs...</p>
 
   return (
     <div>
       <div className='border-b border-gray-300 py-3'>
         <h3 className='text-gray-600 font-bold text-2xl'>
-          {title === 'Global connections and opportunities, endless' ? `${jobs.length} New jobs` :
+          {(title === 'Global connections and opportunities, endless' || company === 'All') ? `${jobs.length} New jobs` :
             categoryJobsList.length > 0 ? `${categoryJobsList.length} jobs` : 'No jobs found for this category'}
         </h3>
         <p className='text-xs text-gray-600 mb-3'>
@@ -46,12 +58,15 @@ const JobListing = ({ jobs }: Props) => {
       </div>
 
       <div className='mb-10'>
-        {(title === 'Global connections and opportunities, endless' || title === 'All' || company === 'All' ? jobs : categoryJobsList.length > 0 ? categoryJobsList
-          : companyJobsList.length > 0 ? companyJobsList : []
-        ).map((job) => (
-          <JobItem key={job?.id} job={job} />
-        )
-        )}
+        {((title === ('Global connections and opportunities, endless' || 'All') || company === 'All') ?
+          jobs : categoryJobsList).map((job: JobDetails) => (
+            <JobItem
+              key={job?.id}
+              job={job}
+            />
+          ))
+        }
+
       </div>
     </div>
   )

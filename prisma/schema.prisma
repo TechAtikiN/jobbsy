@@ -11,43 +11,42 @@ datasource db {
 }
 
 model Applicant {
-  id                      Int      @id @default(autoincrement())
-  name                    String
-  email                   String
-  location                String
-  resume                  String
-  summary                 String
-  job                     Job      @relation(fields: [jobId], references: [id])
-  jobId                   Int
-  createdAt               DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  location  String
+  summary   String
+  job       Job      @relation(fields: [jobId], references: [id])
+  jobId     Int
+  createdAt DateTime @default(now())
 }
 
 model Job {
-  id                      Int      @id @default(autoincrement())
-  title                   String
-  location                String
-  domain                  String
-  salaryCompensation      String
-  yearsOfExperience       String
-  description             String
-  dayInLife               String
-  compensation            String
-  rolesResponsibilities   String
-  applicants              Applicant[]
-  skillset                String
-  companyId               Int
-  company   Company  @relation(fields: [companyId], references: [id])
+  id                    Int         @id @default(autoincrement())
+  title                 String
+  location              String
+  domain                String
+  salaryCompensation    String
+  yearsOfExperience     String
+  description           String
+  dayInLife             String
+  compensation          String
+  rolesResponsibilities String
+  applicants            Applicant[]
+  skillset              String
+  companyId             Int
+  company               Company     @relation(fields: [companyId], references: [id])
 }
 
 model Company {
-  id            Int      @id @default(autoincrement())
-  name          String
-  location      String
-  description   String
-  about         String
-  benefits      String
-  policies      String
-  website       String
-  jobs          Job[] 
-  createdAt     DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  name        String
+  location    String
+  description String
+  about       String
+  benefits    String
+  policies    String
+  website     String
+  jobs        Job[]
+  createdAt   DateTime @default(now())
 }

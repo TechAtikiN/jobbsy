@@ -1,7 +1,6 @@
 'use client'
 // named imports
 import { getJobDetails } from '@/actions/getJobDetails'
-import JobApplicationForm from '@/components/jobs/JobApplicationForm'
 import { Sheet, SheetTrigger } from '@/components/ui/sheet'
 import {
   ClipboardDocumentIcon,
@@ -15,6 +14,8 @@ import { useToast } from '@/hooks/useToast'
 
 // default imports
 import Link from 'next/link'
+import JobApplicationForm from '@/components/jobs/JobApplicationForm'
+import Loader from '@/components/ui/loader'
 
 const hiringProcess = [
   {
@@ -55,6 +56,8 @@ const JobDetails = () => {
     fetchJobDetails()
   }, [jobId])
 
+  if (loading) return <Loader />
+
   return (
     <div className='p-6 sm:px-14 px-7'>
 
@@ -73,7 +76,7 @@ const JobDetails = () => {
                 Apply for this position
               </button>
             </SheetTrigger>
-            <JobApplicationForm company={jobDetails?.company?.name!} jobTitle={jobDetails?.title!} />
+            <JobApplicationForm jobId={jobDetails?.id!} company={jobDetails?.company?.name!} jobTitle={jobDetails?.title!} />
           </Sheet>
         </div>
 
@@ -159,7 +162,7 @@ const JobDetails = () => {
                 Apply for this position
               </button>
             </SheetTrigger>
-            <JobApplicationForm company={jobDetails?.company?.name!} jobTitle={jobDetails?.title!} />
+            <JobApplicationForm jobId={jobDetails?.id!} company={jobDetails?.company?.name!} jobTitle={jobDetails?.title!} />
           </Sheet>
         </div>
 

@@ -23,8 +23,6 @@ export async function getCompanyCategories() {
         },
     ];
 
-    console.log(companyJobs);
-
     return result.concat(
         companyJobs.map((company) => {
             return {
