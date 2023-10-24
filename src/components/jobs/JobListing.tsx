@@ -5,6 +5,7 @@ import JobItem from './JobItem'
 import { getCategoryJobs } from '@/actions/getCategoryJobs'
 import { useEffect, useState } from 'react'
 import { toast, useToast } from '@/hooks/useToast'
+import { useCurrentCompanyStore } from '@/store/useCurrentCompanyStore'
 
 interface Props {
   jobs: JobDetails[]
@@ -13,7 +14,10 @@ interface Props {
 const JobListing = ({ jobs }: Props) => {
   const { toast } = useToast()
   const [title] = usePageTitleStore((state) => [state.title])
+  const [company] = useCurrentCompanyStore((state) => [state.company])
   const [categoryJobsList, setCategoryJobsList] = useState<JobDetails[]>([])
+  const [companyJobsList, setCompanyJobsList] = useState<JobDetails[]>([])
+
 
   useEffect(() => {
     const fetchCategoryJobs = async () => {
@@ -21,8 +25,13 @@ const JobListing = ({ jobs }: Props) => {
       setCategoryJobsList(categoryJobs)
     }
 
+    const fetchCompanyJobs = async () => {
+      const companyJobs: JobDetails[] = await getCategoryJobs(company)
+      setCompanyJobsList(companyJobs)
+    }
+    fetchCompanyJobs()
     fetchCategoryJobs()
-  }, [title])
+  }, [title, company])
 
   return (
     <div>
@@ -37,14 +46,12 @@ const JobListing = ({ jobs }: Props) => {
       </div>
 
       <div className='mb-10'>
-        {(title === ('Global connections and opportunities, endless' || 'All') ?
-          jobs : categoryJobsList).map((job: JobDetails) => (
-            <JobItem
-              key={job?.id}
-              job={job}
-            />
-          ))
-        }
+        {(title === 'Global connections and opportunities, endless' || title === 'All' || company === 'All' ? jobs : categoryJobsList.length > 0 ? categoryJobsList
+          : companyJobsList.length > 0 ? companyJobsList : []
+        ).map((job) => (
+          <JobItem key={job?.id} job={job} />
+        )
+        )}
       </div>
     </div>
   )

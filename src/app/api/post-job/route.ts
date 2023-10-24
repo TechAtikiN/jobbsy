@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 // default imports
 import prisma from "../../../../prisma/client";
+import { withSwagger } from "next-swagger-doc";
 
 type JobPost = {
     title: string;

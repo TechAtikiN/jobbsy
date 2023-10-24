@@ -7,6 +7,7 @@ import PageTitle from '@/components/jobs/PageTitle'
 import CategoryListing from '@/components/jobs/CategoryListing'
 import JobListing from '@/components/jobs/JobListing'
 import Loader from '@/components/ui/loader'
+import CompanyFilters from '@/components/jobs/CompanyFilters'
 
 export default async function Home() {
   const jobs = await getAllJobs()
@@ -32,9 +33,12 @@ export default async function Home() {
 
         {/* job filters */}
         <div className='col-span-3 hidden sm:block'>
-          <h3 className='text-gray-600 font-bold text-2xl'>Search by category</h3>
+          <h3 className='text-gray-600 font-bold text-2xl'>Search by Category</h3>
 
           <CategoryListing />
+
+          <h3 className='text-gray-600 font-bold text-2xl mt-7'>Search by Company</h3>
+          {/* <CompanyFilters /> */}
         </div>
       </div>
 
