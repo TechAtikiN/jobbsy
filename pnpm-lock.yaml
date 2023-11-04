@@ -100,9 +100,6 @@ devDependencies:
   eslint-config-next:
     specifier: 13.5.6
     version: 13.5.6(eslint@8.52.0)(typescript@5.2.2)
-  jest:
-    specifier: ^29.7.0
-    version: 29.7.0(@types/node@20.8.7)(ts-node@10.9.1)
   jest-environment-jsdom:
     specifier: ^29.7.0
     version: 29.7.0

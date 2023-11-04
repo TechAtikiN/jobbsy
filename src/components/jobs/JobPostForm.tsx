@@ -47,7 +47,7 @@ const JobPostForm = () => {
     fetchCompanies()
   }, [])
 
-  if (loading) return <Loader />
+  // if (loading) return <Loader />
 
   const onSubmit = handleSubmit(async (data) => {
     const response = await fetch('/api/post-job', {
