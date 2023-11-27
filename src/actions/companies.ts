@@ -15,12 +15,7 @@ export async function addCompanyProfile(data: any) {
 }
 
 export async function getCompanies() {
-    const companies = await prisma.company.findMany({
-        select: {
-            id: true,
-            name: true,
-        },
-    })
+    const companies = await prisma.company.findMany()
   
     if (!companies) {
         throw new Error('Companies not found')
