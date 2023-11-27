@@ -2,7 +2,7 @@
 // named imports
 import { useEffect, useState } from 'react'
 import { usePageTitleStore } from '@/store/usePageTitleStore'
-import { getCategories } from '@/actions/getCategories'
+import { getCategories } from '@/actions/jobs/jobs'
 
 const CategoryListing = () => {
   const setTitle = usePageTitleStore((state) => state.setTitle)

@@ -1,7 +1,7 @@
 'use client'
 // named imports
 import { useEffect, useState } from 'react'
-import { getCompanies } from '@/actions/getCompanies'
+import { getCompanies } from '@/actions/companies/companies'
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
 import { Sheet, SheetTrigger } from '../ui/sheet'
@@ -30,7 +30,7 @@ type Company = {
   name: string,
 }
 
-const JobPostForm = () => {
+export function JobPostForm() {
   const { toast } = useToast()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
@@ -47,7 +47,7 @@ const JobPostForm = () => {
     fetchCompanies()
   }, [])
 
-  // if (loading) return <Loader />
+  if (loading) return <Loader />
 
   const onSubmit = handleSubmit(async (data) => {
     const response = await fetch('/api/post-job', {
@@ -88,11 +88,9 @@ const JobPostForm = () => {
             className='border border-gray-300 px-2 py-2 my-2 text-sm w-full sm:w-1/2 rounded-md focus:outline-none'
             name='companyId'
             id='companyId'>
-            {
-              companies.map((company) => (
-                <option value={company.id} key={company.id}>{company.name}</option>
-              ))
-            }
+            {companies.map((company) => (
+              <option value={company.id} key={company.id}>{company.name}</option>
+            ))}
           </select>
           {errors.company && <p className='text-red-500 text-xs'>Company is required</p>}
 

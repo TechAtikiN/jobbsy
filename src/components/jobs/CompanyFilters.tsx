@@ -2,7 +2,7 @@
 // named imports
 import { useEffect, useState } from 'react'
 import { usePageTitleStore } from '@/store/usePageTitleStore'
-import { getCompanyCategories } from '@/actions/getCompanyCategories'
+import { getCompanyCategories } from '@/actions/companies/companies'
 import { useCurrentCompanyStore } from '@/store/useCurrentCompanyStore'
 
 const CompanyFilters = () => {

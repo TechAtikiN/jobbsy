@@ -1,6 +1,5 @@
-'use client'
 // named imports
-import { getJobDetails } from '@/actions/getJobDetails'
+import { getJobDetails } from '@/actions/jobs/jobs'
 import { Sheet, SheetTrigger } from '@/components/ui/sheet'
 import {
   ClipboardDocumentIcon,
@@ -40,23 +39,10 @@ const hiringProcess = [
   }
 ]
 
-const JobDetails = () => {
-  const { toast } = useToast()
-  const { jobId } = useParams()
-  const [loading, setLoading] = useState(false)
-  const [jobDetails, setJobDetails] = useState<JobDetails>()
-
-  useEffect(() => {
-    const fetchJobDetails = async () => {
-      setLoading(true)
-      const jobDetails = await getJobDetails(Number(jobId))
-      setJobDetails(jobDetails)
-      setLoading(false)
-    }
-    fetchJobDetails()
-  }, [jobId])
-
-  if (loading) return <Loader />
+export async function JobDetails({ params }: { params: { jobId: string } }) {
+  const { jobId } = params
+  const jobDetails = await getJobDetails(Number(jobId))
+  if (!jobDetails) return <Loader />
 
   return (
     <div className='p-6 sm:px-14 px-7'>
@@ -69,10 +55,7 @@ const JobDetails = () => {
           {/* job application form  */}
           <Sheet>
             <SheetTrigger asChild>
-              <button
-                className='apply-btn hidden sm:block'
-
-              >
+              <button className='apply-btn hidden sm:block'>
                 Apply for this position
               </button>
             </SheetTrigger>
@@ -84,7 +67,6 @@ const JobDetails = () => {
         <div className='my-4'>
           <div className='my-3'>
             <p className='font-semibold text-lg text-gray-700'>{jobDetails?.company?.name}</p>
-            {/* <p className='text-xs text-gray-500'>{jobDetails?.date}</p> */}
           </div>
 
           <div className='flex justify-start items-center space-x-10'>
@@ -109,19 +91,9 @@ const JobDetails = () => {
 
             <h3 className='font-bold text-2xl my-2 mt-7'>Roles and Responsibilities</h3>
             <p className='text-justify pr-3'>{jobDetails?.rolesResponsibilities}</p>
-            {/* <ul className='px-8 space-y-3'>
-              {jobDetails.rolesAndResponsibilities.map((role, index) => (
-                <li key={index} className='text-justify list-disc'>{role}</li>
-                ))}
-              </ul> */}
 
             <h3 className='font-bold text-2xl my-2 mt-7'>Skillset</h3>
             <p className='text-justify pr-3'>{jobDetails?.skillset}</p>
-            {/* <ul className='px-8 space-y-3'>
-              {jobDetails.skillSet.map((skill, index) => (
-                <li key={index} className='text-justify list-disc'>{skill}</li>
-              ))}
-            </ul> */}
 
             <h3 className='font-bold text-2xl my-2 mt-7'>Compensation</h3>
             <p className='text-justify pr-3'>{jobDetails?.compensation}</p>
@@ -147,18 +119,14 @@ const JobDetails = () => {
                         {step.description}
                       </span>
                     </p>
-
                   </div>
                 </li>
               ))}
             </ol>
-
           </div>
           <Sheet>
             <SheetTrigger asChild>
-              <button
-                className='apply-btn w-full text-center'
-              >
+              <button className='apply-btn w-full text-center'>
                 Apply for this position
               </button>
             </SheetTrigger>

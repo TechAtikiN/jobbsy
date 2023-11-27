@@ -2,12 +2,12 @@
 // default imports
 import { usePageTitleStore } from '@/store/usePageTitleStore'
 import JobItem from './JobItem'
-import { getCategoryJobs } from '@/actions/getCategoryJobs'
+import { getCategoryJobs } from '@/actions/jobs/jobs'
 import { useEffect, useState } from 'react'
 import { toast, useToast } from '@/hooks/useToast'
 import { useCurrentCompanyStore } from '@/store/useCurrentCompanyStore'
-import { getCompanyCategories } from '@/actions/getCompanyCategories'
-import { getCompanyCategoryJobs } from '@/actions/getCompanyCategoryJobs'
+import { getCompanyCategories } from '@/actions/companies/companies'
+import { getCompanyCategoryJobs } from '@/actions/companies/companies'
 
 interface Props {
   jobs: JobDetails[]

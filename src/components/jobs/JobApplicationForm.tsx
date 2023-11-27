@@ -1,5 +1,6 @@
 'use client'
 // named imports
+import { useState } from 'react'
 import {
   SheetClose,
   SheetContent,
@@ -11,7 +12,6 @@ import {
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
 import { postApplication } from '@/actions/postApplication'
-import { useState } from 'react'
 
 type Props = {
   jobTitle: string
@@ -28,8 +28,8 @@ type FormValues = {
 }
 
 const JobApplicationForm = ({ jobTitle, company, jobId }: Props) => {
-  const { toast } = useToast()
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>()
+  const { toast } = useToast()
 
   const [loading, setLoading] = useState(false)
 

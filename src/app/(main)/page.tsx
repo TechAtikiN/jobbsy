@@ -1,6 +1,6 @@
 // named imports
-import { getAllJobs } from '@/actions/getAllJobs'
 import { Suspense } from 'react'
+import { getAllJobs } from '@/actions/jobs/jobs'
 
 // default imports
 import PageTitle from '@/components/jobs/PageTitle'
@@ -41,7 +41,6 @@ export default async function Home() {
           <CompanyFilters />
         </div>
       </div>
-
     </div>
   )
 }

@@ -1,5 +1,5 @@
-// 'use client'
-// named imports
+'use client'
+import { useState } from 'react'
 import {
   SheetContent,
   SheetDescription,
@@ -9,8 +9,7 @@ import {
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
-import { useTransition } from 'react'
-import { addCompanyProfile } from '@/actions/addCompanyProfile'
+import { addCompanyProfile } from '@/actions/companies/companies'
 
 type FormValues = {
   name: string
@@ -23,26 +22,33 @@ type FormValues = {
 }
 
 const AddCompanyForm = () => {
-  const [isPending, startTransition] = useTransition()
+  const [loading, setLoading] = useState(false)
+
   const { toast } = useToast()
   const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
-  const onSubmit = handleSubmit(async (data) => {
-    const company = startTransition(() => {
-      addCompanyProfile(data)
-    })
 
-    if (company === null) {
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later",
-      })
-    } else {
-      toast({
-        title: "Added the company successfully",
-        description: "Now you can add jobs for this company",
-      })
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setLoading(true)
+      const company = await addCompanyProfile(data)
+
+      if (company === null) {
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later",
+        })
+      } else {
+        toast({
+          title: "Added the company successfully",
+          description: "Now you can add jobs for this company",
+        })
+      }
+      setLoading(false)
+    } catch (err) {
+      console.log(err)
     }
+
   })
 
   return (
@@ -185,7 +191,7 @@ const AddCompanyForm = () => {
             className='bg-indigo-500 text-center w-full uppercase font-semibold text-white px-3 py-2 rounded-md text-sm'
             type='submit'
           >
-            {isPending ? 'Submitting...' : 'Submit'}
+            {loading ? 'Submitting...' : 'Submit'}
           </button>
         </SheetFooter>
       </form>
