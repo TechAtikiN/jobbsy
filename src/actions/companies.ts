@@ -85,3 +85,37 @@ export async function getCompanyCategoryJobs(companyName: string) {
 
   return jobs
 }
+
+export async function getCompanyDetails(companyId: number) {
+  const company = await prisma.company.findUnique({
+    where: {
+      id: companyId,
+    },
+  })
+
+  if (!company) {
+    throw new Error('Company not found')
+  }
+
+  return company
+}
+
+export async function getJobsOfCompany(companyId: number) {
+  const jobs = await prisma.job.findMany({
+    select: {
+      id: true,
+      title: true,
+      domain: true,
+      salaryCompensation: true,
+    },
+    where: {
+      companyId: companyId,
+    },
+  })
+
+  if (!jobs) {
+    throw new Error('Jobs not found')
+  }
+
+  return jobs
+}

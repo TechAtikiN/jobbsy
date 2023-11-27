@@ -51,16 +51,12 @@ const JobItem = ({ job }: Props) => {
             </p>
 
             <div className='space-x-2'>
-              {/* {job?.skills.map((skill) => ( */}
               <span
-                // key={skill}
                 className='p-2 hover:cursor-pointer font-medium rounded-lg text-xs bg-green-50 text-green-600 hover:bg-green-200 hover:text-green-800'
               >
                 {job?.domain}
               </span>
-              {/* ))} */}
             </div>
-
           </div>
         </div>
       </Link>

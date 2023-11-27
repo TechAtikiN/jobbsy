@@ -25,6 +25,9 @@ type Company = {
     description?: string;
     benefits?: string;
     location?: string;
+    website?: string;
+    policies?: string;
+    about?: string;
 };
 
 type JobDetails = {

@@ -20,7 +20,7 @@ export default async function CompaniesPage() {
           <Link
             href={`/companies/${company?.id}`}
             key={company?.id}
-            className='flex justify-between items-center space-x-5 p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100'
+            className='flex justify-between items-center space-x-5 p-3 border border-indigo-300 bg-indigo-50 rounded-lg hover:bg-indigo-100'
           >
             <div className='w-1/5'>
               <div className='p-1 font-bold text-xl h-24 w-24 bg-indigo-400 rounded-lg'>
