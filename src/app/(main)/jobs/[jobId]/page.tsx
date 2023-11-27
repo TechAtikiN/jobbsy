@@ -8,7 +8,9 @@ import Loader from '@/components/ui/loader'
 import HiringProcessList from '@/components/jobs/HiringProcessList'
 import CompanyInformation from '@/components/jobs/CompanyInformation'
 
-export async function JobDetails({ params: { jobId } }: { params: { jobId: string } }) {
+export const revalidate = Number(process.env.CACHE_TIMEOUT) || 60
+
+export default async function JobDetails({ params: { jobId } }: { params: { jobId: string } }) {
   const jobDetails = await getJobDetails(Number(jobId))
 
   if (!jobDetails) return <Loader />
@@ -84,5 +86,3 @@ export async function JobDetails({ params: { jobId } }: { params: { jobId: strin
     </div >
   )
 }
-
-export default JobDetails

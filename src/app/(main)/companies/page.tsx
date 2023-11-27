@@ -4,6 +4,8 @@ import { getCompanies } from '@/actions/companies'
 // default imports
 import Link from 'next/link'
 
+export const revalidate = Number(process.env.CACHE_TIMEOUT) || 60
+
 export default async function CompaniesPage() {
   const companies = await getCompanies()
 

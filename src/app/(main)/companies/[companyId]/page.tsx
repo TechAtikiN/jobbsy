@@ -4,6 +4,8 @@ import { getCompanyDetails, getJobsOfCompany } from '@/actions/companies'
 // default imports
 import Link from 'next/link'
 
+export const revalidate = Number(process.env.CACHE_TIMEOUT) || 60
+
 export default async function CompanyDetails({ params: { companyId } }: { params: { companyId: string } }) {
   const company: Company = await getCompanyDetails(Number(companyId))
   const jobs = await getJobsOfCompany(Number(companyId))
