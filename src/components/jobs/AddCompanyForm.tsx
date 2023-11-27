@@ -10,6 +10,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
 import { addCompanyProfile } from '@/actions/companies/companies'
+import { useRouter } from 'next/navigation'
 
 type FormValues = {
   name: string
@@ -22,6 +23,7 @@ type FormValues = {
 }
 
 const AddCompanyForm = () => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const { toast } = useToast()
@@ -39,6 +41,7 @@ const AddCompanyForm = () => {
           description: "Please try again later",
         })
       } else {
+        router.refresh()
         toast({
           title: "Added the company successfully",
           description: "Now you can add jobs for this company",

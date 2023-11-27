@@ -9,6 +9,7 @@ import {
   DialogTitle
 } from '../ui/dialog'
 import { useToast } from '@/hooks/useToast'
+import { useState } from 'react'
 
 type FormValues = {
   name: string
@@ -19,8 +20,11 @@ const NewsLetterForm = () => {
   const { toast } = useToast()
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>()
 
+  const [loading, setLoading] = useState(false)
+
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setLoading(true)
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -29,7 +33,7 @@ const NewsLetterForm = () => {
         },
         cache: 'no-cache'
       })
-
+      setLoading(false)
       if (!res.ok) {
         toast({
           title: "Something went wrong",
@@ -84,7 +88,13 @@ const NewsLetterForm = () => {
           {errors.email && <span className='text-red-500 text-xs'>This field is required</span>}
         </div>
         <DialogFooter>
-          <button type='submit' className='apply-btn mx-auto my-2 py-2'>Subscribe</button>
+          <button
+            type='submit'
+            className='apply-btn mx-auto my-2 py-2'
+            disabled={loading}
+          >
+            {loading ? 'Please Wait...' : 'Subscribe'}
+          </button>
         </DialogFooter>
       </form>
 

@@ -37,6 +37,7 @@ export function JobPostForm() {
   const [loading, setLoading] = useState(false)
   const [companies, setCompanies] = useState<Company[]>([])
 
+  // fetch companies
   useEffect(() => {
     const fetchCompanies = async () => {
       setLoading(true)
@@ -49,6 +50,7 @@ export function JobPostForm() {
 
   if (loading) return <Loader />
 
+  // handle submission of job post
   const onSubmit = handleSubmit(async (data) => {
     const response = await fetch('/api/post-job', {
       method: 'POST',
@@ -59,7 +61,7 @@ export function JobPostForm() {
       cache: 'no-cache',
     })
 
-    if (response.status === 200) {
+    if (response.ok) {
       toast({
         title: "Job posted successfully",
         description: "Created a new job post",
@@ -83,6 +85,7 @@ export function JobPostForm() {
             Select the company you are posting for.
           </p>
 
+          {/* Companies dropdown  */}
           <select
             {...register('companyId', { required: true, valueAsNumber: true })}
             className='border border-gray-300 px-2 py-2 my-2 text-sm w-full sm:w-1/2 rounded-md focus:outline-none'
@@ -100,7 +103,7 @@ export function JobPostForm() {
             </p>
             <Sheet>
               <SheetTrigger asChild>
-                <button className='text-indigo-500 font-semibold'>
+                <button type='button' className='text-indigo-500 font-semibold'>
                   &nbsp;Add Company
                 </button>
               </SheetTrigger>

@@ -56,7 +56,7 @@ const Footer = () => {
                   <Link href='/' className='hover:underline'>Jobs</Link>
                 </li>
                 <li>
-                  <Link href='/companies' className='hover:underline'>Compaies</Link>
+                  <Link href='/companies' className='hover:underline'>Companies</Link>
                 </li>
                 <li>
                   <Link href='/post' className='hover:underline'>Post a Job</Link>

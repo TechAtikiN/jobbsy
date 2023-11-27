@@ -1,6 +1,6 @@
+// default imports
 import Footer from "@/components/global/Footer"
 import Navbar from "@/components/global/Navbar"
-import Link from "next/link"
 
 const NotFound = () => {
   return (

@@ -9,12 +9,24 @@ import JobListing from '@/components/jobs/JobListing'
 import Loader from '@/components/ui/loader'
 import CompanyFilters from '@/components/jobs/CompanyFilters'
 
-export default async function Home() {
-  const jobs = await getAllJobs()
+export const revalidate = Number(process.env.CACHE_TIMEOUT) || 60
+
+export default async function Home({
+  searchParams: { category, company }
+}: {
+  searchParams: {
+    category: string
+    company: string
+  }
+}) {
+  const jobs = await getAllJobs(category, company)
 
   return (
     <div className='px-8'>
-      <PageTitle />
+      <PageTitle
+        category={category}
+        company={company}
+      />
 
       <div className='grid sm:grid-cols-10 sm:mx-6 gap-x-8'>
         <div className='col-span-7'>
@@ -35,10 +47,10 @@ export default async function Home() {
         <div className='col-span-3 hidden sm:block'>
           <h3 className='text-gray-600 font-bold text-2xl'>Search by Category</h3>
 
-          <CategoryListing />
+          <CategoryListing selectedCategory={category} />
 
           <h3 className='text-gray-600 font-bold text-2xl mt-7'>Search by Company</h3>
-          <CompanyFilters />
+          <CompanyFilters selectedCompany={company} />
         </div>
       </div>
     </div>

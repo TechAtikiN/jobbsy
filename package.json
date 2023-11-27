@@ -21,7 +21,6 @@
         "formidable": "^3.5.1",
         "lucide-react": "^0.288.0",
         "next": "13.5.6",
-        "next-swagger-doc": "^0.4.0",
         "nodemailer": "^6.9.7",
         "react": "^18",
         "react-dom": "^18",

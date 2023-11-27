@@ -13,6 +13,8 @@ const transporter = createTransport({
 const handler = async (req: Request) => {
     const { email, name, summary, location, company } = await req.json();
 
+  // MAILING FUNCTIONALITY
+  
   // html template for mail being sent to organization
   const orgMailFormattedHtml = `
   <h2>Job Application Request</h2>

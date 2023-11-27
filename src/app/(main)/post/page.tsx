@@ -1,6 +1,8 @@
 // default imports
 import JobPostForm from '@/components/jobs/JobPostForm'
 
+export const revalidate = Number(process.env.CACHE_TIMEOUT) || 60
+
 const JobPost = () => {
 
   return (

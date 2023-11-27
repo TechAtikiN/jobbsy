@@ -7,8 +7,6 @@ import Footer from '@/components/global/Footer'
 import Navbar from '@/components/global/Navbar'
 import Error from './error'
 
-export const revalidate = Number(process.env.NEXT_PUBLIC_REVALIDATE) || 60
-
 const AppLayout = ({ children }: {
   children: React.ReactNode
 }) => {

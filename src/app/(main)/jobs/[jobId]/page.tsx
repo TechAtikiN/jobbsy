@@ -39,9 +39,9 @@ const hiringProcess = [
   }
 ]
 
-export async function JobDetails({ params }: { params: { jobId: string } }) {
-  const { jobId } = params
-  const jobDetails = await getJobDetails(Number(jobId))
+export async function JobDetails({ params: { jobId } }: { params: { jobId: string } }) {
+  const jobDetails: JobDetails = await getJobDetails(Number(jobId))
+
   if (!jobDetails) return <Loader />
 
   return (

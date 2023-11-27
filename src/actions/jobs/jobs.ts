@@ -2,8 +2,25 @@
 
 import prisma from '../../../prisma/client'
 
-export async function getAllJobs() {
+export async function getAllJobs(category: string, company: string) {
     // getting all jobs from the database
+    // const jobs = await prisma.job.findMany({
+    //     select: {
+    //         id: true,
+    //         title: true,
+    //         domain: true,
+    //         location: true,
+    //         salaryCompensation: true,
+    //         company: {
+    //             select: {
+    //                 id: true,
+    //                 name: true,
+    //                 description: true,
+    //             },
+    //         },
+    //     },
+    // });
+
     const jobs = await prisma.job.findMany({
         select: {
             id: true,
@@ -19,8 +36,14 @@ export async function getAllJobs() {
                 },
             },
         },
-    });
-
+        where: {
+            domain: category,
+            company: {
+                name: company,
+            },
+        },
+    })
+    
     if (!jobs) {
         throw new Error('Jobs not found');
     }
