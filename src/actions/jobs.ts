@@ -1,26 +1,8 @@
 'use server'
 
-import prisma from '../../../prisma/client'
+import prisma from '../../prisma/client'
 
 export async function getAllJobs(category: string, company: string) {
-    // getting all jobs from the database
-    // const jobs = await prisma.job.findMany({
-    //     select: {
-    //         id: true,
-    //         title: true,
-    //         domain: true,
-    //         location: true,
-    //         salaryCompensation: true,
-    //         company: {
-    //             select: {
-    //                 id: true,
-    //                 name: true,
-    //                 description: true,
-    //             },
-    //         },
-    //     },
-    // });
-
     const jobs = await prisma.job.findMany({
         select: {
             id: true,
@@ -52,7 +34,6 @@ export async function getAllJobs(category: string, company: string) {
 }
 
 export async function getCategories() {
-    // from the jobs table, get the count of domains and group them by domain
     const categories = await prisma.job.groupBy({
         by: ['domain'],
         _count: {
@@ -60,7 +41,6 @@ export async function getCategories() {
         },
     });
 
-    // map the categories to the format we need
     let result = [
         {
             title: 'All',

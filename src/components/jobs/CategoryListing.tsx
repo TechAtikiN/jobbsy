@@ -1,13 +1,17 @@
 // named imports
-import { getCategories } from '@/actions/jobs/jobs'
+import { getCategories } from '@/actions/jobs'
 
 // default imports
 import CategoryListItem from './CategoryListItem'
 
-interface Props { selectedCategory: string }
+interface Props {
+  selectedCategory: string
+  selectedCompany: string
+}
 
 export async function CategoryListing({
-  selectedCategory
+  selectedCategory,
+  selectedCompany
 }: Props) {
   const categories = await getCategories()
 
@@ -15,7 +19,12 @@ export async function CategoryListing({
     <div>
       <div className='my-2'>
         {(categories.slice(0, 7)).map((category, index) => (
-          <CategoryListItem selectedCategory={selectedCategory} category={category} key={index} />
+          <CategoryListItem
+            selectedCompany={selectedCompany}
+            selectedCategory={selectedCategory}
+            category={category}
+            key={index}
+          />
         ))}
       </div>
     </div>

@@ -1,6 +1,6 @@
 // named imports
 import { Suspense } from 'react'
-import { getAllJobs } from '@/actions/jobs/jobs'
+import { getAllJobs } from '@/actions/jobs'
 
 // default imports
 import PageTitle from '@/components/jobs/PageTitle'
@@ -47,10 +47,10 @@ export default async function Home({
         <div className='col-span-3 hidden sm:block'>
           <h3 className='text-gray-600 font-bold text-2xl'>Search by Category</h3>
 
-          <CategoryListing selectedCategory={category} />
+          <CategoryListing selectedCompany={company} selectedCategory={category} />
 
           <h3 className='text-gray-600 font-bold text-2xl mt-7'>Search by Company</h3>
-          <CompanyFilters selectedCompany={company} />
+          <CompanyFilters selectedCompany={company} selectedCategory={category} />
         </div>
       </div>
     </div>

@@ -6,9 +6,10 @@ import { usePathname, useRouter } from 'next/navigation'
 interface Props {
   category: { title: string, count: number }
   selectedCategory: string
+  selectedCompany: string
 }
 
-export default function CategoryListItem({ category, selectedCategory }: Props) {
+export default function CategoryListItem({ category, selectedCategory, selectedCompany }: Props) {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -16,7 +17,7 @@ export default function CategoryListItem({ category, selectedCategory }: Props) 
     if (category === 'All') {
       router.replace(pathname)
     } else {
-      router.replace(`${pathname}?category=${category}`)
+      selectedCompany ? router.replace(`${pathname}?category=${category}&company=${selectedCompany}`) : router.replace(`${pathname}?category=${category}`)
     }
   }
 

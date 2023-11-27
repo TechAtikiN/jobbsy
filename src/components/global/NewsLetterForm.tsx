@@ -74,7 +74,7 @@ const NewsLetterForm = () => {
             id='name'
             className='form-input w-full'
           />
-          {errors.name && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.name && <span className='error'>This field is required</span>}
         </div>
         <div className=''>
           <label htmlFor='email' className='text-sm'>
@@ -85,7 +85,7 @@ const NewsLetterForm = () => {
             id='email'
             className='form-input w-full'
           />
-          {errors.email && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.email && <span className='error'>This field is required</span>}
         </div>
         <DialogFooter>
           <button

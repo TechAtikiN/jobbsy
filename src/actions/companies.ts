@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from '../../../prisma/client'
+import prisma from '../../prisma/client'
 
 export async function addCompanyProfile(data: any) {
   const company = await prisma.company.create({
@@ -27,7 +27,6 @@ export async function getCompanies() {
     }
     return companies
 }
-
 
 export async function getCompanyCategories() {
 
@@ -91,4 +90,3 @@ export async function getCompanyCategoryJobs(companyName: string) {
 
   return jobs
 }
-

@@ -9,7 +9,7 @@ import {
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
-import { addCompanyProfile } from '@/actions/companies/companies'
+import { addCompanyProfile } from '@/actions/companies'
 import { useRouter } from 'next/navigation'
 
 type FormValues = {
@@ -24,11 +24,9 @@ type FormValues = {
 
 const AddCompanyForm = () => {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
-
   const { toast } = useToast()
-  const { register, setValue, handleSubmit, formState: { errors } } = useForm<FormValues>()
-
+  const [loading, setLoading] = useState(false)
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>()
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -68,6 +66,7 @@ const AddCompanyForm = () => {
       </SheetHeader>
 
       <hr className='my-4' />
+
       <form
         onSubmit={onSubmit}
         className='flex flex-col pr-3 space-y-6 my-5 sm:h-[480px] overflow-x-hidden overflow-y-scroll'>
@@ -84,7 +83,7 @@ const AddCompanyForm = () => {
             className='form-input'
             {...register('name', { required: true })}
           />
-          {errors.name && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.name && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -100,7 +99,7 @@ const AddCompanyForm = () => {
             className='form-input'
             {...register('location', { required: true })}
           />
-          {errors.location && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.location && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -116,7 +115,7 @@ const AddCompanyForm = () => {
             className='form-input'
             {...register('description', { required: true })}
           />
-          {errors.description && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.description && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -134,7 +133,7 @@ const AddCompanyForm = () => {
             className='form-input'
             {...register('about', { required: true })}
           ></textarea>
-          {errors.about && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.about && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -152,7 +151,7 @@ const AddCompanyForm = () => {
             className='form-input'
             {...register('benefits', { required: true })}
           ></textarea>
-          {errors.benefits && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.benefits && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -170,7 +169,7 @@ const AddCompanyForm = () => {
             className='form-input'
             {...register('policies', { required: true })}
           ></textarea>
-          {errors.policies && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.policies && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -186,7 +185,7 @@ const AddCompanyForm = () => {
             className='form-input'
             {...register('website', { required: true })}
           />
-          {errors.website && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.website && <span className='error'>This field is required</span>}
         </div>
 
         <SheetFooter>

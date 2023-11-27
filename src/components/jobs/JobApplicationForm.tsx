@@ -11,7 +11,7 @@ import {
 } from '../ui/sheet'
 import { useForm } from 'react-hook-form'
 import { useToast } from '@/hooks/useToast'
-import { postApplication } from '@/actions/postApplication'
+import { postApplication } from '@/actions/applicants'
 
 type Props = {
   jobTitle: string
@@ -93,7 +93,7 @@ const JobApplicationForm = ({ jobTitle, company, jobId }: Props) => {
             className='form-input'
             {...register('name', { required: true })}
           />
-          {errors.name && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.name && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -109,7 +109,7 @@ const JobApplicationForm = ({ jobTitle, company, jobId }: Props) => {
             className='form-input'
             {...register('email', { required: true })}
           />
-          {errors.email && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.email && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -125,7 +125,7 @@ const JobApplicationForm = ({ jobTitle, company, jobId }: Props) => {
             className='form-input'
             {...register('location', { required: true })}
           />
-          {errors.location && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.location && <span className='error'>This field is required</span>}
         </div>
 
         <div className='flex flex-col space-y-1'>
@@ -142,7 +142,7 @@ const JobApplicationForm = ({ jobTitle, company, jobId }: Props) => {
             className='form-input'
             {...register('summary', { required: true })}
           ></textarea>
-          {errors.summary && <span className='text-red-500 text-xs'>This field is required</span>}
+          {errors.summary && <span className='error'>This field is required</span>}
         </div>
 
         <SheetFooter>
