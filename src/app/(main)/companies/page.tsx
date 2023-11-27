@@ -15,7 +15,7 @@ export default async function CompaniesPage() {
         One step closer to your dream company
       </h2>
 
-      <div className='m-4 grid grid-cols-2 gap-5'>
+      <div className='m-4 grid grd-cols-1 sm:grid-cols-2 gap-5'>
         {companies?.map((company) => (
           <Link
             href={`/companies/${company?.id}`}
@@ -23,7 +23,7 @@ export default async function CompaniesPage() {
             className='flex justify-between items-center space-x-5 p-3 border border-indigo-300 bg-indigo-50 rounded-lg hover:bg-indigo-100'
           >
             <div className='w-1/5'>
-              <div className='p-1 font-bold text-xl h-24 w-24 bg-indigo-400 rounded-lg'>
+              <div className='p-1 hidden md:block font-bold text-xl h-24 w-24 bg-indigo-400 rounded-lg'>
                 <p className=' text-white text-center text-5xl pt-4'>{company?.name.charAt(0)}</p>
               </div>
             </div>

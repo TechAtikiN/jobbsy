@@ -1,0 +1,11 @@
+export const companies = [
+  {
+    name: 'Meta',
+    location: 'Menlo Park, California',
+    description: 'Meta is a leading technology company that envisions a connected world where people can interact and share experiences in a digital space that transcends traditional boundaries. Formerly known as Facebook, Inc., Meta is at the forefront of shaping the future of the internet, focusing on technologies that connect people, foster community, and enable immersive digital experiences.',
+    about: 'Founded in 2004 by Mark Zuckerberg and a group of visionary collaborators, Meta has evolved from a social networking platform to a company dedicated to building the next generation of computing platforms. Our mission is to develop technologies that empower individuals, businesses, and communities to connect, share, and thrive in a digital environment.',
+    benefits: 'At Meta, we recognize that our employees are our greatest asset. We are committed to providing a comprehensive benefits package that supports the well-being and professional growth of our diverse and talented team. Our benefits include: Meta offers a competitive salary structure to attract and retain top talent. We provide health, dental, and vision insurance to ensure the health and well-being of our employees. We understand the importance of work-life balance. Employees enjoy generous paid time off and vacation days.  Eligible employees may receive stock options, aligning their success with the company growth.',
+    policies: 'Meta is dedicated to fostering a positive and inclusive work environment. Our policies are designed to uphold ethical standards, ensure the well-being of our employees, and promote diversity and inclusion. Meta is an equal opportunity employer, committed to providing employment opportunities without regard to race, color, religion, sex, national origin, age, disability, or any other protected status. We prioritize user privacy and have robust policies in place to protect user data and maintain a secure digital environment. We uphold a strong code of conduct that guides our employees in maintaining the highest ethical standards in their work.',
+    website: 'https://www.meta.com/'
+  }
+]
