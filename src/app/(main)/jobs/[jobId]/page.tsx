@@ -9,7 +9,7 @@ import HiringProcessList from '@/components/jobs/HiringProcessList'
 import CompanyInformation from '@/components/jobs/CompanyInformation'
 
 export async function JobDetails({ params: { jobId } }: { params: { jobId: string } }) {
-  const jobDetails: JobDetails = await getJobDetails(Number(jobId))
+  const jobDetails = await getJobDetails(Number(jobId))
 
   if (!jobDetails) return <Loader />
 
