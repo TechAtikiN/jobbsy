@@ -92,7 +92,7 @@ export function JobPostForm({ companies }: { companies: Company[] }) {
       </div>
 
       {/* job application details */}
-      <div className='border-gray-900/10 pb-12'>
+      <div className='border-gray-900/10 pb-2'>
         <h2 className='heading'>
           Application Details
         </h2>
@@ -278,12 +278,14 @@ export function JobPostForm({ companies }: { companies: Company[] }) {
         </div>
       </div>
 
-      <button
-        type='submit'
-        className='apply-btn sm:w-1/4 sm:ml-[415px] mb-4 sm:mb-9'
-      >
-        Post a Job
-      </button>
+      <div className='flex items-center justify-center mx-auto'>
+        <button
+          type='submit'
+          className='apply-btn sm:w-1/4 mb-4 sm:mb-9'
+        >
+          Post a Job
+        </button>
+      </div>
     </form>
   )
 }

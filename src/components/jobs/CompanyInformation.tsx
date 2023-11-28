@@ -16,7 +16,9 @@ export default function CompanyInformation({
 
       <div className='p-4 bg-indigo-50 rounded-md'>
         <div className='flex flex-col'>
-          <p className='text-xl font-semibold'>{company?.name}</p>
+          <Link
+            href={`/companies/${company?.id}`}
+            className='text-xl font-semibold underline'>{company?.name}</Link>
           <p className='text-sm'>{company?.location}</p>
         </div>
         <p className='text-sm my-4'>{company?.description}</p>

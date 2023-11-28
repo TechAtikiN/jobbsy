@@ -10,14 +10,14 @@ export default async function CompaniesPage() {
   const companies = await getCompanies()
 
   return (
-    <div>
+    <div className=''>
       <h2
-        className='text-center sm:h-40 font-serif font-bold mx-auto text-4xl sm:text-5xl p-2 pt-2 pb-4 sm:px-10 sm:py-6 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r sm:w-2/3 leading-[1.15] from-blue-300 via-indigo-500 to-sky-900'
+        className='text-center sm:h-40 font-serif font-bold mx-auto text-4xl sm:text-5xl p-2 pt-2 pb-4 sm:px-10 sm:py-10 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r sm:w-2/3 leading-[1.15] from-blue-300 via-indigo-500 to-sky-900'
       >
         One step closer to your dream company
       </h2>
 
-      <div className='m-4 grid grd-cols-1 sm:grid-cols-2 gap-5'>
+      <div className='m-4 grid grd-cols-1 sm:grid-cols-2 gap-5 my-10'>
         {companies?.map((company) => (
           <Link
             href={`/companies/${company?.id}`}
@@ -34,12 +34,12 @@ export default async function CompaniesPage() {
               <p className='text-sm text-gray-600'>
                 {company?.description?.slice(0, 100) + '...'}
               </p>
-              <Link
-                href={`${company.website}`}
+              <p
+                // href={`${company.website}`}
                 className='text-indigo-600 font-semibold text-sm hover:underline'
               >
                 {company?.website}
-              </Link>
+              </p>
             </div>
           </Link>
         ))}
